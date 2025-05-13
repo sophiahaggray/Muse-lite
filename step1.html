@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step 1: Observe & Consume | Muse</title>
+    <style>
+        /* Reset CSS */
+        *, 
+        *::before, 
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        img, picture, video, canvas, svg {
+            display: block;
+            max-width: 100%;
+        }
+
+        input, button, textarea, select {
+            font: inherit;
+        }
+
+        p, h1, h2, h3, h4, h5, h6 {
+            overflow-wrap: break-word;
+        }
+
+        ol, ul {
+            list-style-position: inside;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        /* Modern Typography Settings */
+        h1, h2, h3, h4, h5, h6, .title, .subtitle {
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        body, p, button, input, textarea, select, .body-text {
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .title {
+            font-size: 3.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+
+        .intro-paragraph {
+            font-size: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .subtext {
+            font-size: 0.875rem;
+            opacity: 0.7;
+        }
+
+        button {
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0;
+        }
+
+        /* Main Styling */
+        :root {
+            --color-background: #FFFFFF;
+            --color-text: #000000;
+            --color-hover: #333333;
+            --color-border: #E0E0E0;
+            --color-light-gray: #F5F5F5;
+            --spacing-unit: 1rem;
+        }
+
+        body {
+            background-color: var(--color-background);
+            color: var(--color-text);
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: calc(var(--spacing-unit) * 8) var(--spacing-unit) calc(var(--spacing-unit) * 4);
+        }
+
+        /* Navigation bar */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: calc(var(--spacing-unit) * 1.5) var(--spacing-unit);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--color-background);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+        }
+        
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: calc(var(--spacing-unit) * 2);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-text);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Header Styling */
+        header {
+            margin-bottom: calc(var(--spacing-unit) * 5);
+        }
+
+        .title {
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .subtitle {
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            opacity: 0.7;
+        }
+
+        /* Progress indicator */
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: calc(var(--spacing-unit) * 4);
+        }
+
+        .progress-step {
+            position: relative;
+            flex: 1;
+        }
+
+        .progress-step::before {
+            content: '';
+            height: 2px;
+            width: 100%;
+            background-color: var(--color-border);
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .progress-step:first-child::before {
+            width: 50%;
+            left: 50%;
+        }
+
+        .progress-step:last-child::before {
+            width: 50%;
+        }
+
+        .step-indicator {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: var(--color-background);
+            border: 2px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            position: relative;
+            z-index: 2;
+            margin: 0 auto;
+        }
+
+        .progress-step.active .step-indicator {
+            background-color: var(--color-text);
+            color: var(--color-background);
+            border-color: var(--color-text);
+        }
+
+        .progress-step.completed .step-indicator {
+            background-color: var(--color-text);
+            color: var(--color-background);
+            border-color: var(--color-text);
+        }
+
+        .progress-step.completed::before {
+            background-color: var(--color-text);
+        }
+
+        .step-label {
+            font-size: 0.75rem;
+            text-align: center;
+            margin-top: calc(var(--spacing-unit) * 0.5);
+            color: var(--color-hover);
+        }
+
+        .progress-step.active .step-label {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        /* Step 1 Specific Styling */
+        .step-content {
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--spacing-unit) * 3);
+        }
+
+        .step-question {
+            font-size: 2.25rem;
+            margin-bottom: calc(var(--spacing-unit) * 2.5);
+            letter-spacing: -0.03em;
+        }
+
+        /* Industry Selector */
+        .industry-selector {
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+
+        .industry-table {
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+
+        .industry-categories {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: calc(var(--spacing-unit) * 1.5);
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+
+        @media (min-width: 640px) {
+            .industry-categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 900px) {
+            .industry-categories {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .category-card {
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: calc(var(--spacing-unit) * 1.5);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .category-card:hover {
+            border-color: #000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .category-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: var(--spacing-unit);
+            position: relative;
+        }
+
+        .category-card h3::after {
+            content: '';
+            display: block;
+            width: 2rem;
+            height: 2px;
+            background-color: #000;
+            margin-top: 0.5rem;
+        }
+
+        .industry-list {
+            list-style: none;
+        }
+
+        .industry-option {
+            margin-bottom: calc(var(--spacing-unit) * 0.75);
+            display: flex;
+            align-items: center;
+        }
+
+        .industry-option input[type="radio"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 1.125rem;
+            height: 1.125rem;
+            border: 1px solid #000;
+            border-radius: 50%;
+            margin-right: calc(var(--spacing-unit) * 0.75);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .industry-option input[type="radio"]:checked {
+            background-color: #fff;
+            border: 1px solid #000;
+        }
+
+        .industry-option input[type="radio"]:checked::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0.5rem;
+            height: 0.5rem;
+            background-color: #000;
+            border-radius: 50%;
+        }
+
+        .industry-option label {
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        /* Form Styling */
+        .form-group {
+            margin-bottom: calc(var(--spacing-unit) * 2.5);
+        }
+
+        label {
+            display: block;
+            margin-bottom: calc(var(--spacing-unit) * 0.75);
+            font-weight: 500;
+        }
+
+        textarea {
+            width: 100%;
+            padding: calc(var(--spacing-unit) * 1.25);
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 120px;
+            transition: border-color 0.2s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--color-text);
+        }
+
+        .button-group {
+            display: flex;
+            gap: calc(var(--spacing-unit) * 1.5);
+            flex-wrap: wrap;
+        }
+
+        .primary-button {
+            background-color: var(--color-text);
+            color: var(--color-background);
+            padding: calc(var(--spacing-unit) * 0.75) calc(var(--spacing-unit) * 2);
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+        }
+
+        .primary-button:hover {
+            background-color: var(--color-hover);
+        }
+
+        .secondary-button {
+            border: 1px solid var(--color-text);
+            padding: calc(var(--spacing-unit) * 0.75) calc(var(--spacing-unit) * 2);
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .secondary-button:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        /* Article Explorer */
+        .article-explorer {
+            margin-top: calc(var(--spacing-unit) * 4);
+            border-top: 1px solid var(--color-border);
+            padding-top: calc(var(--spacing-unit) * 4);
+        }
+
+        .article-explorer h3 {
+            font-size: 2rem;
+            margin-bottom: calc(var(--spacing-unit) * 1.25);
+            letter-spacing: -0.02em;
+        }
+
+        .article-explorer > p {
+            margin-bottom: calc(var(--spacing-unit) * 2.5);
+            font-size: 1.125rem;
+        }
+
+        .article-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: calc(var(--spacing-unit) * 1);
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+
+        .category-tab {
+            padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .category-tab:hover {
+            border-bottom-color: var(--color-border);
+        }
+
+        .category-tab.active {
+            border-bottom-color: var(--color-text);
+            font-weight: 600;
+        }
+
+        .articles-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: calc(var(--spacing-unit) * 2);
+        }
+
+        @media (min-width: 768px) {
+            .articles-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .article-card {
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: calc(var(--spacing-unit) * 2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+            border-color: #000;
+        }
+
+        .article-title {
+            font-size: 1.25rem;
+            margin-bottom: calc(var(--spacing-unit) * 0.75);
+            letter-spacing: -0.01em;
+        }
+
+        .article-meta {
+            display: flex;
+            font-size: 0.875rem;
+            color: rgba(0, 0, 0, 0.6);
+            margin-bottom: calc(var(--spacing-unit) * 1.25);
+        }
+
+        .article-source {
+            margin-right: var(--spacing-unit);
+            font-weight: 500;
+        }
+
+        .article-summary {
+            margin-bottom: var(--spacing-unit);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .article-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: calc(var(--spacing-unit) * 1.5);
+        }
+
+        .article-link {
+            font-weight: 500;
+            position: relative;
+            transition: opacity 0.2s ease;
+        }
+
+        .article-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 100%;
+            height: 1px;
+            background-color: currentColor;
+            transform-origin: right;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .article-link:hover::after {
+            transform-origin: left;
+            transform: scaleX(1);
+        }
+
+        .save-article-button {
+            font-size: 0.875rem;
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
+            position: relative;
+        }
+
+        .save-article-button::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 100%;
+            height: 1px;
+            background-color: currentColor;
+        }
+
+        .save-article-button:hover {
+            opacity: 1;
+        }
+
+        .save-article-button.saved {
+            opacity: 0.5;
+            cursor: default;
+        }
+
+        .save-article-button.saved::after {
+            display: none;
+        }
+
+        /* Step Navigation */
+        .step-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: calc(var(--spacing-unit) * 5);
+            border-top: 1px solid var(--color-border);
+            padding-top: calc(var(--spacing-unit) * 3);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: opacity 0.2s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 100%;
+            height: 1px;
+            background-color: currentColor;
+            transform-origin: right;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            transform-origin: left;
+            transform: scaleX(1);
+        }
+
+        .nav-link[disabled] {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .nav-link[disabled]::after {
+            display: none;
+        }
+
+        .step-indicator {
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            opacity: 0.6;
+        }
+
+        /* Selected State */
+        .selected {
+            background-color: var(--color-light-gray);
+        }
+    </style>
+    <!-- Google Fonts - Inter for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-logo">Muse</a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Progress bar -->
+        <div class="progress-bar">
+            <div class="progress-step active">
+                <div class="step-indicator">1</div>
+                <div class="step-label">Observe</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-indicator">2</div>
+                <div class="step-label">Question</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-indicator">3</div>
+                <div class="step-label">Ideate</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-indicator">4</div>
+                <div class="step-label">Create</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-indicator">5</div>
+                <div class="step-label">Summarize</div>
+            </div>
+        </div>
+
+        <header>
+            <h1 class="title">Muse</h1>
+            <p class="subtitle">Step 1: Observe & Consume</p>
+        </header>
+
+        <section class="step-content">
+            <h2 class="step-question">What space do you want to improve?</h2>
+            
+            <div class="industry-selector">
+                <form id="industry-form">
+                    <div class="industry-table">
+                        <div class="industry-categories">
+                            <!-- Demo content for visualization -->
+                            <div class="category-card">
+                                <h3>Core Industries</h3>
+                                <ul class="industry-list">
+                                    <li class="industry-option">
+                                        <input type="radio" name="industry" id="agriculture" value="Agriculture">
+                                        <label for="agriculture">Agriculture</label>
+                                    </li>
+                                    <li class="industry-option">
+                                        <input type="radio" name="industry" id="manufacturing" value="Manufacturing">
+                                        <label for="manufacturing">Manufacturing</label>
+                                    </li>
+                                    <li class="industry-option">
+                                        <input type="radio" name="industry" id="transportation" value="Transportation">
+                                        <label for="transportation">Transportation</label>
+                                    </li>
+                                    <li class="industry-option">
+                                        <input type="radio" name="industry" id="energy" value="Energy">
+                                        <label for="energy">Energy</label>
+                                    </li>
+                                    <li class="industry-option">
+                                        <input type="radio" name="industry" id="construction" value="Construction">
+                                        <label for="construction">Construction</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="category-card">
+                                <h3>Creative Sectors</h3>
+                                <ul class="industry-list">
+                                    <li class="industry-option">
+                                        <input type="radio" name="industry" id="art-design" value="Art & Design">
+                                        <label for="art-design">Art & Design</label>
+                                    </li>
+                                    <li class="industry-option">
+                                        <input type="radio" name="industry" id="music" value="Music">
+                                        <label for="music">Music</label>
+                                    </li>
+                                    <li class="industry-option">
+                                        <input type="radio" name="industry" id="film-tv" value="Film & TV">
+                                        <label for="film-tv">Film & TV</label>
+                                    </li>
+                                    <li class="industry-option">
+                                        <input type="radio" name="industry" id="publishing" value="Publishing">
+                                        <label for="publishing">Publishing</label>
+                                    </li>
+                                    <li class="industry-option">
+                                        <input type="radio" name="industry" id="gaming" value="Gaming">
+                                        <label for="gaming">Gaming</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="category-card">
+                                <h3>Technology</h3>
+                                <ul class="industry-list">
+                                    <li class="industry-option">
+                                        <input type="radio" name="industry" id="software" value="Software">
+                                        <label for="software">Software</label>
+                                    </li>
+                                    <li class="industry-option">
+                                        <input type="radio" name="industry" id="ai-ml" value="Technology: AI & Machine Learning">
+                                        <label for="ai-ml">AI & Machine Learning</label>
+                                    </li>
+                                    <li class="industry-option">
+                                        <input type="radio" name="industry" id="e-commerce" value="E-commerce">
+                                        <label for="e-commerce">E-commerce</label>
+                                    </li>
+                                    <li class="industry-option">
+                                        <input type="radio" name="industry" id="cybersecurity" value="Cybersecurity">
+                                        <label for="cybersecurity">Cybersecurity</label>
+                                    </li>
+                                    <li class="industry-option">
+                                        <input type="radio" name="industry" id="fintech" value="Fintech">
+                                        <label for="fintech">Fintech</label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="industry-reason">Why this space?</label>
+                        <textarea id="industry-reason" name="industryReason" rows="4" placeholder="What draws you to this industry? Is there something specific you've noticed or experienced?"></textarea>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button type="submit" class="primary-button">Continue to Step 2</button>
+                        <button type="button" class="secondary-button" id="save-progress">Save Progress</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="article-explorer">
+                <h3>Explore the Edge</h3>
+                <p>Browse these curated articles to spark your thinking.</p>
+                
+                <div class="article-categories">
+                    <div class="category-tab active" data-category="ai">AI & Automation</div>
+                    <div class="category-tab" data-category="biotech">Biotech</div>
+                    <div class="category-tab" data-category="xr">XR (Extended Reality)</div>
+                    <div class="category-tab" data-category="web3">Web3 & Decentralization</div>
+                    <div class="category-tab" data-category="sustainability">Sustainability</div>
+                    <div class="category-tab" data-category="future-work">Future of Work</div>
+                </div>
+                
+                <div class="articles-container" id="articles-container">
+                    <!-- Sample article cards -->
+                    <div class="article-card" data-category="ai">
+                        <h4 class="article-title">How AI is Transforming Industries</h4>
+                        <div class="article-meta">
+                            <span class="article-source">MIT Technology Review</span>
+                            <span class="article-date">2023-09-15</span>
+                        </div>
+                        <p class="article-summary">Artificial intelligence is reshaping numerous industries, from healthcare to finance, automating tasks and providing unprecedented insights from data.</p>
+                        <div class="article-actions">
+                            <a href="#" class="article-link" target="_blank">Read Article</a>
+                            <button class="save-article-button" data-article-id="ai-1">Save to Workspace</button>
+                        </div>
+                    </div>
+                    
+                    <div class="article-card" data-category="ai">
+                        <h4 class="article-title">The Ethics of AI Decision-Making</h4>
+                        <div class="article-meta">
+                            <span class="article-source">Stanford HAI</span>
+                            <span class="article-date">2023-07-22</span>
+                        </div>
+                        <p class="article-summary">As AI systems make more critical decisions, researchers and policymakers debate ethical frameworks for responsible implementation.</p>
+                        <div class="article-actions">
+                            <a href="#" class="article-link" target="_blank">Read Article</a>
+                            <button class="save-article-button" data-article-id="ai-2">Save to Workspace</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <div class="step-navigation">
+                <a href="index.html" class="nav-link">← Back to Intro</a>
+                <div class="step-indicator">Step 1 of 5</div>
+                <button class="nav-link" id="preview-next-step">Next: Question →</button>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded - Muse Step 1 script initialized');
+            
+            // Check if browser supports localStorage
+            function supportsLocalStorage() {
+                try {
+                    return 'localStorage' in window && window['localStorage'] !== null;
+                } catch (e) {
+                    return false;
+                }
+            }
+            
+            // Initialize or load progress
+            let museProgress = {
+                currentStep: 1,
+                industry: "",
+                industryReason: "",
+                observations: [],
+                questions: [],
+                ideas: [],
+                workspace: {
+                    savedArticles: []
+                },
+                summary: ""
+            };
+            
+            // Load saved progress if it exists
+            if (supportsLocalStorage()) {
+                const savedProgress = localStorage.getItem('museProgress');
+                if (savedProgress) {
+                    try {
+                        const parsedProgress = JSON.parse(savedProgress);
+                        museProgress = { ...museProgress, ...parsedProgress };
+                        
+                        // Restore saved industry selection
+                        if (museProgress.industry) {
+                            const industryRadio = document.querySelector(`input[value="${museProgress.industry}"]`);
+                            if (industryRadio) {
+                                industryRadio.checked = true;
+                            }
+                        }
+                        
+                        // Restore saved reason
+                        if (museProgress.industryReason) {
+                            document.getElementById('industry-reason').value = museProgress.industryReason;
+                        }
+                        
+                        // Restore saved articles
+                        if (museProgress.workspace && museProgress.workspace.savedArticles) {
+                            museProgress.workspace.savedArticles.forEach(articleId => {
+                                const saveButton = document.querySelector(`.save-article-button[data-article-id="${articleId}"]`);
+                                if (saveButton) {
+                                    saveButton.textContent = 'Saved!';
+                                    saveButton.classList.add('saved');
+                                    saveButton.disabled = true;
+                                }
+                            });
+                        }
+                    } catch (e) {
+                        console.error('Error parsing saved progress:', e);
+                    }
+                }
+            }
+            
+            // Form submission - connect to next page
+            const form = document.getElementById('industry-form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get selected industry
+                    const selectedIndustry = document.querySelector('input[name="industry"]:checked');
+                    if (!selectedIndustry) {
+                        alert('Please select an industry to continue.');
+                        return;
+                    }
+                    
+                    // Save industry and reason to progress
+                    museProgress.industry = selectedIndustry.value;
+                    museProgress.industryReason = document.getElementById('industry-reason').value;
+                    museProgress.currentStep

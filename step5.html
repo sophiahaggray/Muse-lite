@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step 5: Final Summary | Muse</title>
+    <style>
+        /* Reset CSS */
+        *, 
+        *::before, 
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        img, picture, video, canvas, svg {
+            display: block;
+            max-width: 100%;
+        }
+
+        input, button, textarea, select {
+            font: inherit;
+        }
+
+        p, h1, h2, h3, h4, h5, h6 {
+            overflow-wrap: break-word;
+        }
+
+        ol, ul {
+            list-style-position: inside;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        /* Modern Typography Settings */
+        h1, h2, h3, h4, h5, h6, .title, .subtitle {
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        body, p, button, input, textarea, select, .body-text {
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        /* Main Styling */
+        :root {
+            --color-background: #FFFFFF;
+            --color-text: #000000;
+            --color-hover: #333333;
+            --color-border: #E0E0E0;
+            --color-light-gray: #F5F5F5;
+            --color-medium-gray: #EEEEEE;
+            --spacing-unit: 1rem;
+            --border-radius: 8px;
+        }
+
+        body {
+            background-color: var(--color-background);
+            color: var(--color-text);
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: calc(var(--spacing-unit) * 4) var(--spacing-unit);
+        }
+
+        /* Header Styling */
+        .title {
+            font-size: 3.5rem;
+            letter-spacing: -0.03em;
+            margin-bottom: var(--spacing-unit);
+            position: relative;
+        }
+
+        .title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -0.5rem;
+            width: 3rem;
+            height: 2px;
+            background-color: var(--color-text);
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            opacity: 0.7;
+            display: flex;
+            align-items: center;
+        }
+
+        .subtitle em {
+            opacity: 0.7;
+            font-weight: 400;
+            margin-left: 8px;
+            font-style: normal;
+            position: relative;
+        }
+
+        .subtitle em::before {
+            content: '—';
+            margin-right: 8px;
+            opacity: 0.5;
+        }
+
+        /* Step Content */
+        .step-content {
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--spacing-unit) * 3);
+        }
+
+        .step-introduction {
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+
+        .step-question {
+            font-size: 2.25rem;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+        }
+
+        .context {
+            font-size: 1.125rem;
+            margin-bottom: calc(var(--spacing-unit) * 3);
+            max-width: 700px;
+            line-height: 1.5;
+        }
+
+        /* Idea Card Styling */
+        .idea-card {
+            border: 1px solid var(--color-border);
+            margin-bottom: calc(var(--spacing-unit) * 4);
+            background-color: var(--color-background);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .idea-card-header {
+            padding: calc(var(--spacing-unit) * 2);
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--color-light-gray);
+        }
+
+        .idea-title {
+            font-size: 1.5rem;
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+
+        .idea-date {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            font-weight: 500;
+        }
+
+        .idea-content {
+            padding: calc(var(--spacing-unit) * 2.5);
+        }
+
+        .idea-section {
+            margin-bottom: calc(var(--spacing-unit) * 2.5);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding-bottom: calc(var(--spacing-unit) * 2);
+        }
+
+        .idea-section:last-child {
+            border-bottom: none;
+        }
+
+        .idea-section h4 {
+            font-size: 0.85rem;
+            margin-bottom: calc(var(--spacing-unit) * 1);
+            opacity: 0.6;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+
+        .idea-section p {
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .impact-section {
+            background-color: var(--color-light-gray);
+            padding: calc(var(--spacing-unit) * 2);
+            border-radius: var(--border-radius);
+            margin-top: calc(var(--spacing-unit) * 2.5);
+            border: none;
+        }
+
+        .impact-section h4 {
+            color: #000;
+            opacity: 0.8;
+        }
+
+        /* Workspace Preview Sections */
+        .workspace-preview {
+            margin-top: calc(var(--spacing-unit) * 4);
+            border-top: 2px solid var(--color-border);
+            padding-top: calc(var(--spacing-unit) * 3);
+        }
+
+        .workspace-preview h4 {
+            font-size: 1.25rem;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            position: relative;
+            display: inline-block;
+        }
+
+        .workspace-preview h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 2.5rem;
+            height: 2px;
+            background-color: var(--color-text);
+        }
+
+        .preview-section {
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+
+        .preview-section h5 {
+            font-size: 1rem;
+            margin-bottom: calc(var(--spacing-unit) * 1);
+            opacity: 0.8;
+            font-weight: 600;
+        }
+
+        /* Moodboard Preview */
+        .moodboard-thumbnails {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: calc(var(--spacing-unit) * 0.75);
+        }
+
+        .moodboard-thumb {
+            width: 100%;
+            height: 90px;
+            object-fit: cover;
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            transition: transform 0.2s ease;
+        }
+
+        .moodboard-thumb:hover {
+            transform: scale(1.05);
+        }
+
+        /* Sketch Preview */
+        .sketch-preview {
+            max-width: 100%;
+            border: 1px solid var(--color-border);
+            padding: calc(var(--spacing-unit) * 0.75);
+            border-radius: var(--border-radius);
+            background-color: var(--color-light-gray);
+        }
+
+        .sketch-preview img {
+            max-width: 100%;
+            border-radius: 2px;
+        }
+
+        /* Notepad Preview */
+        .notepad-preview {
+            border-left: 3px solid rgba(0, 0, 0, 0.1);
+            padding-left: calc(var(--spacing-unit) * 1.5);
+            padding-top: calc(var(--spacing-unit) * 0.5);
+            padding-bottom: calc(var(--spacing-unit) * 0.5);
+            margin-left: calc(var(--spacing-unit) * 0.5);
+        }
+
+        .notepad-insight {
+            margin-bottom: calc(var(--spacing-unit) * 1.25);
+            font-style: italic;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .notepad-insight:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Articles Preview */
+        .articles-preview {
+            font-size: 0.95rem;
+        }
+
+        .article-item {
+            margin-bottom: calc(var(--spacing-unit) * 1);
+            padding-bottom: calc(var(--spacing-unit) * 1);
+            border-bottom: 1px dotted var(--color-border);
+        }
+
+        .article-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .article-title {
+            font-weight: 600;
+            margin-bottom: calc(var(--spacing-unit) * 0.25);
+        }
+
+        .article-source {
+            opacity: 0.7;
+            font-size: 0.9em;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: calc(var(--spacing-unit) * 1.25);
+            margin-bottom: calc(var(--spacing-unit) * 4);
+        }
+
+        .primary-button {
+            background-color: var(--color-text);
+            color: var(--color-background);
+            padding: calc(var(--spacing-unit) * 0.875) calc(var(--spacing-unit) * 2.5);
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+
+        .primary-button:hover {
+            background-color: var(--color-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .secondary-button {
+            border: 1px solid var(--color-text);
+            padding: calc(var(--spacing-unit) * 0.875) calc(var(--spacing-unit) * 2.5);
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .secondary-button:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .text-button {
+            padding: calc(var(--spacing-unit) * 0.875) calc(var(--spacing-unit) * 1.5);
+            opacity: 0.7;
+            transition: opacity 0.2s ease;
+            position: relative;
+        }
+
+        .text-button::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 6px;
+            width: 100%;
+            height: 1px;
+            background-color: currentColor;
+            transform-origin: right;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            opacity: 0.5;
+        }
+
+        .text-button:hover {
+            opacity: 1;
+        }
+
+        .text-button:hover::after {
+            transform-origin: left;
+            transform: scaleX(1);
+        }
+
+        /* Final Message */
+        .final-message {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            margin-bottom: calc(var(--spacing-unit) * 4);
+            max-width: 700px;
+            padding: calc(var(--spacing-unit) * 2);
+            background-color: var(--color-light-gray);
+            border-radius: var(--border-radius);
+            position: relative;
+        }
+
+        .final-message p {
+            margin-bottom: calc(var(--spacing-unit) * 1.25);
+        }
+
+        .final-message p:last-child {
+            margin-bottom: 0;
+        }
+
+        .final-message em {
+            font-style: normal;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+
+        .final-message em::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        /* Step Navigation */
+        .step-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: calc(var(--spacing-unit) * 5);
+            border-top: 1px solid var(--color-border);
+            padding-top: calc(var(--spacing-unit) * 3);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 100%;
+            height: 1px;
+            background-color: currentColor;
+            transform-origin: right;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            transform-origin: left;
+            transform: scaleX(1);
+        }
+
+        .step-indicator {
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            opacity: 0.6;
+        }
+
+        /* Status message */
+        .status-message {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 12px 20px;
+            background-color: #333;
+            color: white;
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .status-message.show {
+            opacity: 1;
+        }
+
+        /* Warning message for localStorage */
+        .warning-message {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: calc(var(--spacing-unit) * 1);
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            border-radius: 4px;
+            border-left: 4px solid #ffeeba;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: calc(var(--spacing-unit) * 3) var(--spacing-unit);
+            }
+            
+            .title {
+                font-size: 2.75rem;
+            }
+            
+            .step-question {
+                font-size: 1.75rem;
+            }
+            
+            .context {
+                font-size: 1rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .primary-button, .secondary-button, .text-button {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .idea-card-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .idea-date {
+                margin-top: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2.25rem;
+            }
+            
+            .step-question {
+                font-size: 1.5rem;
+            }
+            
+            .idea-content {
+                padding: calc(var(--spacing-unit) * 1.5);
+            }
+            
+            .moodboard-thumbnails {
+                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+            }
+            
+            .moodboard-thumb {
+                height: 70px;
+            }
+        }
+    </style>
+    <!-- Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="container">
+        <div id="localStorage-warning" style="display: none;" class="warning-message">
+            Warning: Local storage is not available in your browser. Your progress will not be saved between sessions.
+        </div>
+
+        <div id="status-message" class="status-message"></div>
+
+        <header>
+            <h1 class="title">Muse</h1>
+            <p class="subtitle">Step 5: Final Summary <em>A snapshot of the idea you've been building.</em></p>
+        </header>
+
+        <section class="step-content">
+            <div class="step-introduction">
+                <h2 class="step-question">Here's your billion-dollar idea.</h2>
+                <p class="context">You've been thinking, sketching, and collecting. Here's a look at the idea that's taken shape — in your own words. Save it, print it, build on it. This is your starting point.</p>
+            </div>
+
+            <div class="idea-card">
+                <div class="idea-card-header">
+                    <h3 class="idea-title">VR Ethics Toolkit for AI Development</h3>
+                    <div class="idea-date">May 3, 2025</div>
+                </div>
+                
+                <div class="idea-content">
+                    <div class="idea-section">
+                        <h4>Chosen Space/Industry</h4>
+                        <p>Technology: AI & Machine Learning</p>
+                    </div>
+                    
+                    <div class="idea-section">
+                        <h4>Why It Matters</h4>
+                        <p>I'm fascinated by how AI could improve education accessibility but concerned about the ethical implications and potential to exacerbate inequalities.</p>
+                    </div>
+                    
+                    <div class="idea-section">
+                        <h4>Frustrations</h4>
+                        <p>AI tools are being developed without sufficient consideration for ethics, accessibility, or long-term social impacts.</p>
+                    </div>
+                    
+                    <div class="idea-section">
+                        <h4>Who's Impacted</h4>
+                        <p>Marginalized communities who are often underrepresented in training data, developers who want to build ethical systems but lack the tools, and end users who may be harmed by algorithmic bias.</p>
+                    </div>
+                    
+                    <div class="idea-section">
+                        <h4>Assumptions Not Questioned</h4>
+                        <p>That abstract ethical guidelines are sufficient for guiding development; that developers can anticipate all potential harms without experiencing them; that ethical AI is simply a technical challenge rather than a human one.</p>
+                    </div>
+                    
+                    <div class="idea-section">
+                        <h4>Tech/Trend Applied</h4>
+                        <p>Virtual Reality (VR)</p>
+                    </div>
+                    
+                    <div class="idea-section">
+                        <h4>Solution Type</h4>
+                        <p>Tool</p>
+                    </div>
+                    
+                    <div class="idea-section">
+                        <h4>Idea Description</h4>
+                        <p>An immersive VR toolkit for AI developers that creates simulated ethical scenarios where they can visualize and experience the potential real-world impacts of their algorithms on diverse populations. The tool would include pre-built ethical dilemmas, customizable parameters for testing different AI implementations, and visualization tools that translate abstract data outcomes into emotionally resonant human experiences.</p>
+                    </div>
+                    
+                    <div class="idea-section impact-section">
+                        <h4>Hoped-for Outcome</h4>
+                        <p>Bridge the empathy gap in AI development by making abstract ethical concepts tangible. Help developers anticipate unintended consequences before deployment. Create more inclusive and equitable AI by centering human impacts in the development process.</p>
+                    </div>
+                    
+                    <!-- Workspace Elements Preview -->
+                    <div class="workspace-preview">
+                        <h4>From Your Workspace</h4>
+                        
+                        <!-- Moodboard Preview -->
+                        <div class="preview-section">
+                            <h5>Moodboard</h5>
+                            <div class="moodboard-thumbnails">
+                                <img src="/api/placeholder/90/90" alt="Inspiration image" class="moodboard-thumb">
+                                <img src="/api/placeholder/90/90" alt="Inspiration image" class="moodboard-thumb">
+                                <img src="/api/placeholder/90/90" alt="Inspiration image" class="moodboard-thumb">
+                            </div>
+                        </div>
+                        
+                        <!-- Sketch Preview -->
+                        <div class="preview-section">
+                            <h5>Sketch</h5>
+                            <div class="sketch-preview">
+                                <img src="/api/placeholder/500/300" alt="Concept sketch">
+                            </div>
+                        </div>
+                        
+                        <!-- Notepad Insights -->
+                        <div class="preview-section">
+                            <h5>Key Insights</h5>
+                            <div class="notepad-preview">
+                                <div class="notepad-insight">The ability to visually represent algorithmic bias and its real-world impacts</div>
+                                <div class="notepad-insight">Helping developers experience their code's consequences from different perspectives</div>
+                                <div class="notepad-insight">Creating emotional resonance with abstract ethical principles</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Saved Articles -->
+                        <div class="preview-section">
+                            <h5>Saved Articles</h5>
+                            <div class="articles-preview">
+                                <div class="article-item">
+                                    <div class="article-title">The Ethics of AI Decision-Making</div>
+                                    <div class="article-source">Stanford HAI</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button id="download-idea" class="primary-button">Download My Idea</button>
+                <button id="new-idea" class="secondary-button">Start a New Idea</button>
+                <button id="continue-evolving" class="secondary-button">Continue Evolving</button>
+                <button id="email-idea" class="text-button">Email this to myself</button>
+            </div>
+            
+            <div class="final-message">
+                <p>You just sketched a billion-dollar idea. Or at least, the start of one.</p>
+                <p>Ideas like this don't need to be perfect — they need to <em>exist</em>. Come back. Keep evolving. Or go build it for real.</p>
+            </div>
+        </section>
+        
+        <footer>
+            <div class="step-navigation">
+                <a href="#" class="nav-link" id="back-to-workspace">← Back to Workspace</a>
+                <div class="step-indicator">Step 5 of 5</div>
+                <a href="#" class="nav-link" id="start-over">Start Over →</a>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check localStorage availability
+            function isLocalStorageAvailable() {
+                try {
+                    const test = 'test';
+                    localStorage.setItem(test, test);
+                    localStorage.removeItem(test);
+                    return true;
+                } catch (e) {
+                    return false;
+                }
+            }
+
+            // Show a status message
+            function showStatusMessage(message, duration = 3000) {
+                const statusMessage = document.getElementById('status-message');
+                statusMessage.textContent = message;
+                statusMessage.classList.add('show');
+                
+                setTimeout(() => {
+                    statusMessage.classList.remove('show');
+                }, duration);
+            }
+
+            // Check if localStorage is available
+            const localStorageAvailable = isLocalStorageAvailable();
+            if (!localStorageAvailable) {
+                document.getElementById('localStorage-warning').style.display = 'block';
+            }
+
+            // Default idea data
+            const defaultIdeaData = {
+                title: "VR Ethics Toolkit for AI Development",
+                date: "May 3, 2025",
+                industry: "Technology: AI & Machine Learning",
+                whyItMatters: "I'm fascinated by how AI could improve education accessibility but concerned about the ethical implications and potential to exacerbate inequalities.",
+                frustrations: "AI tools are being developed without sufficient consideration for ethics, accessibility, or long-term social impacts.",
+                impacted: "Marginalized communities who are often underrepresented in training data, developers who want to build ethical systems but lack the tools, and end users who may be harmed by algorithmic bias.",
+                assumptions: "That abstract ethical guidelines are sufficient for guiding development; that developers can anticipate all potential harms without experiencing them; that ethical AI is simply a technical challenge rather than a human one.",
+                technology: "Virtual Reality (VR)",
+                solutionType: "Tool",
+                description: "An immersive VR toolkit for AI developers that creates simulated ethical scenarios where they can visualize and experience the potential real-world impacts of their algorithms on diverse populations. The tool would include pre-built ethical dilemmas, customizable parameters for testing different AI implementations, and visualization tools that translate abstract data outcomes into emotionally resonant human experiences.",
+                outcome: "Bridge the empathy gap in AI development by making abstract ethical concepts tangible. Help developers anticipate unintended consequences before deployment. Create more inclusive and equitable AI by centering human impacts in the development process.",
+                workspace: {
+                    moodboardImages: [
+                        "/api/placeholder/90/90",
+                        "/api/placeholder/90/90",
+                        "/api/placeholder/90/90"
+                    ],
+                    sketch: "/api/placeholder/500/300",
+                    insights: [
+                        "The ability to visually represent algorithmic bias and its real-world impacts",
+                        "Helping developers experience their code's consequences from different perspectives",
+                        "Creating emotional resonance with abstract ethical principles"
+                    ],
+                    articles: [
+                        {
+                            title: "The Ethics of AI Decision-Making",
+                            source: "Stanford HAI"
+                        }
+                    ]
+                }
+            };
+
+            // Load idea data from localStorage if it exists
+            function loadIdeaData() {
+                if (!localStorageAvailable) return defaultIdeaData;
+
+                try {
+                    const savedData = localStorage.getItem('museIdeaData');
+                    if (savedData) {
+                        const parsedData = JSON.parse(savedData);
+                        updateUI(parsedData);
+                        console.log("Loaded idea data from localStorage");
+                        return parsedData;
+                    } else {
+                        console.log("No idea data in localStorage, using default");
+                        return defaultIdeaData;
+                    }
+                } catch (error) {
+                    console.error("Error loading data from localStorage:", error);
+                    return defaultIdeaData;
+                }
+            }
+
+            // Save idea data to localStorage
+            function saveIdeaData(ideaData) {
+                if (!localStorageAvailable) {
+                    showStatusMessage("Unable to save - localStorage not available", 4000);
+                    return false;
+                }
+
+                try {
+                    localStorage.setItem('museIdeaData', JSON.stringify(ideaData));
+                    localStorage.setItem('museCurrentStep', '5');
+                    console.log("Saved idea data to localStorage");
+                    return true;
+                } catch (error) {
+                    console.error("Error saving data to localStorage:", error);
+                    showStatusMessage("Error saving your idea", 4000);
+                    return false;
+                }
+            }
+
+            // Update UI with idea data
+            function updateUI(ideaData) {
+                // Update idea title and date
+                document.querySelector('.idea-title').textContent = ideaData.title || defaultIdeaData.title;
+                document.querySelector('.idea-date').textContent = ideaData.date || defaultIdeaData.date;
+                
+                // Update all sections
+                const sections = document.querySelectorAll('.idea-section');
+                sections.forEach(section => {
+                    const heading = section.querySelector('h4').textContent;
+                    const content = section.querySelector('p');
+                    
+                    switch(heading) {
+                        case "Chosen Space/Industry":
+                            content.textContent = ideaData.solutionType || defaultIdeaData.solutionType;
+                            break;
+                        case "Idea Description":
+                            content.textContent = ideaData.description || defaultIdeaData.description;
+                            break;
+                        case "Hoped-for Outcome":
+                            content.textContent = ideaData.outcome || defaultIdeaData.outcome;
+                            break;
+                    }
+                });
+                
+                // Update workspace elements if available
+                if (ideaData.workspace) {
+                    // Update moodboard images
+                    const moodboardImages = ideaData.workspace.moodboardImages || defaultIdeaData.workspace.moodboardImages;
+                    const moodboardThumbs = document.querySelectorAll('.moodboard-thumb');
+                    moodboardThumbs.forEach((thumb, index) => {
+                        if (moodboardImages[index]) {
+                            thumb.src = moodboardImages[index];
+                        }
+                    });
+                    
+                    // Update sketch
+                    const sketchImage = document.querySelector('.sketch-preview img');
+                    sketchImage.src = ideaData.workspace.sketch || defaultIdeaData.workspace.sketch;
+                    
+                    // Update insights
+                    const insights = ideaData.workspace.insights || defaultIdeaData.workspace.insights;
+                    const insightsContainer = document.querySelector('.notepad-preview');
+                    insightsContainer.innerHTML = '';
+                    insights.forEach(insight => {
+                        const insightElement = document.createElement('div');
+                        insightElement.className = 'notepad-insight';
+                        insightElement.textContent = insight;
+                        insightsContainer.appendChild(insightElement);
+                    });
+                    
+                    // Update articles
+                    const articles = ideaData.workspace.articles || defaultIdeaData.workspace.articles;
+                    const articlesContainer = document.querySelector('.articles-preview');
+                    articlesContainer.innerHTML = '';
+                    articles.forEach(article => {
+                        const articleElement = document.createElement('div');
+                        articleElement.className = 'article-item';
+                        
+                        const titleElement = document.createElement('div');
+                        titleElement.className = 'article-title';
+                        titleElement.textContent = article.title;
+                        
+                        const sourceElement = document.createElement('div');
+                        sourceElement.className = 'article-source';
+                        sourceElement.textContent = article.source;
+                        
+                        articleElement.appendChild(titleElement);
+                        articleElement.appendChild(sourceElement);
+                        articlesContainer.appendChild(articleElement);
+                    });
+                }
+            }
+
+            // Get current idea data
+            function getCurrentIdeaData() {
+                // Gather data from the current UI
+                const ideaData = {
+                    title: document.querySelector('.idea-title').textContent,
+                    date: document.querySelector('.idea-date').textContent,
+                    industry: document.querySelector('.idea-section:nth-of-type(1) p').textContent,
+                    whyItMatters: document.querySelector('.idea-section:nth-of-type(2) p').textContent,
+                    frustrations: document.querySelector('.idea-section:nth-of-type(3) p').textContent,
+                    impacted: document.querySelector('.idea-section:nth-of-type(4) p').textContent,
+                    assumptions: document.querySelector('.idea-section:nth-of-type(5) p').textContent,
+                    technology: document.querySelector('.idea-section:nth-of-type(6) p').textContent,
+                    solutionType: document.querySelector('.idea-section:nth-of-type(7) p').textContent,
+                    description: document.querySelector('.idea-section:nth-of-type(8) p').textContent,
+                    outcome: document.querySelector('.idea-section:nth-of-type(9) p').textContent,
+                    workspace: {
+                        moodboardImages: Array.from(document.querySelectorAll('.moodboard-thumb')).map(img => img.src),
+                        sketch: document.querySelector('.sketch-preview img').src,
+                        insights: Array.from(document.querySelectorAll('.notepad-insight')).map(insight => insight.textContent),
+                        articles: Array.from(document.querySelectorAll('.article-item')).map(article => ({
+                            title: article.querySelector('.article-title').textContent,
+                            source: article.querySelector('.article-source').textContent
+                        }))
+                    },
+                    lastUpdated: new Date().toISOString()
+                };
+                
+                return ideaData;
+            }
+
+            // Download idea as JSON file
+            function downloadIdea() {
+                const ideaData = getCurrentIdeaData();
+                const dataStr = JSON.stringify(ideaData, null, 2);
+                const dataBlob = new Blob([dataStr], {type: 'application/json'});
+                const url = URL.createObjectURL(dataBlob);
+                
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `muse-idea-${new Date().toISOString().slice(0, 10)}.json`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                showStatusMessage("Your idea has been downloaded!");
+            }
+
+            // Start a new idea
+            function startNewIdea() {
+                if (confirm("Are you sure you want to start a new idea? This will clear your current idea.")) {
+                    if (localStorageAvailable) {
+                        localStorage.removeItem('museIdeaData');
+                        localStorage.setItem('museCurrentStep', '1');
+                    }
+                    
+                    // In a real app, we would redirect to step 1
+                    // For demo purposes, show message
+                    showStatusMessage("Starting a new idea...");
+                    setTimeout(() => {
+                        window.location.href = "step1.html";
+                    }, 1000);
+                }
+            }
+
+            // Continue evolving the idea
+            function continueEvolving() {
+                // Save current idea first
+                saveIdeaData(getCurrentIdeaData());
+                
+                // In a real app, we would redirect to step 4 (workspace)
+                // For demo purposes, show message
+                showStatusMessage("Going back to workspace...");
+                setTimeout(() => {
+                    window.location.href = "step4.html";
+                }, 1000);
+            }
+
+            // Email idea to myself
+            function emailIdea() {
+                const ideaData = getCurrentIdeaData();
+                const subject = encodeURIComponent(`My Muse Idea: ${ideaData.title}`);
+                
+                let body = encodeURIComponent(`My Billion-Dollar Idea from Muse\n\n`);
+                body += encodeURIComponent(`TITLE: ${ideaData.title}\n`);
+                body += encodeURIComponent(`DATE: ${ideaData.date}\n\n`);
+                body += encodeURIComponent(`INDUSTRY: ${ideaData.industry}\n`);
+                body += encodeURIComponent(`WHY IT MATTERS: ${ideaData.whyItMatters}\n`);
+                body += encodeURIComponent(`FRUSTRATIONS: ${ideaData.frustrations}\n`);
+                body += encodeURIComponent(`WHO'S IMPACTED: ${ideaData.impacted}\n`);
+                body += encodeURIComponent(`ASSUMPTIONS NOT QUESTIONED: ${ideaData.assumptions}\n`);
+                body += encodeURIComponent(`TECH/TREND APPLIED: ${ideaData.technology}\n`);
+                body += encodeURIComponent(`SOLUTION TYPE: ${ideaData.solutionType}\n`);
+                body += encodeURIComponent(`IDEA DESCRIPTION: ${ideaData.description}\n`);
+                body += encodeURIComponent(`HOPED-FOR OUTCOME: ${ideaData.outcome}\n`);
+                
+                window.location.href = `mailto:?subject=${subject}&body=${body}`;
+            }
+
+            // Back to workspace
+            function backToWorkspace() {
+                // Save current idea first
+                saveIdeaData(getCurrentIdeaData());
+                
+                // In a real app, we would redirect to step 4 (workspace)
+                // For demo purposes, show message
+                showStatusMessage("Going back to workspace...");
+                setTimeout(() => {
+                    window.location.href = "step4.html";
+                }, 1000);
+            }
+
+            // Start over
+            function startOver() {
+                if (confirm("Are you sure you want to start over? You will be taken back to step 1, but your current idea will be saved.")) {
+                    // Save current idea first
+                    saveIdeaData(getCurrentIdeaData());
+                    
+                    if (localStorageAvailable) {
+                        localStorage.setItem('museCurrentStep', '1');
+                    }
+                    
+                    // In a real app, we would redirect to step 1
+                    // For demo purposes, show message
+                    showStatusMessage("Starting over...");
+                    setTimeout(() => {
+                        window.location.href = "step1.html";
+                    }, 1000);
+                }
+            }
+
+            // Set up action buttons
+            const downloadButton = document.getElementById('download-idea');
+            const newIdeaButton = document.getElementById('new-idea');
+            const continueButton = document.getElementById('continue-evolving');
+            const emailButton = document.getElementById('email-idea');
+            const backToWorkspaceLink = document.getElementById('back-to-workspace');
+            const startOverLink = document.getElementById('start-over');
+            
+            // Set up event listeners
+            downloadButton.addEventListener('click', downloadIdea);
+            newIdeaButton.addEventListener('click', startNewIdea);
+            continueButton.addEventListener('click', continueEvolving);
+            emailButton.addEventListener('click', emailIdea);
+            backToWorkspaceLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                backToWorkspace();
+            });
+            startOverLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                startOver();
+            });
+
+            // Load the idea data and update UI when page loads
+            const ideaData = loadIdeaData();
+            
+            // Save current step to localStorage
+            if (localStorageAvailable) {
+                localStorage.setItem('museCurrentStep', '5');
+                console.log("Current step (5) saved to localStorage");
+            }
+            
+            // Auto-save the idea data to localStorage
+            saveIdeaData(ideaData);
+        });
+    </script>
+</body>
+</html>Content = ideaData.industry || defaultIdeaData.industry;
+                            break;
+                        case "Why It Matters":
+                            content.textContent = ideaData.whyItMatters || defaultIdeaData.whyItMatters;
+                            break;
+                        case "Frustrations":
+                            content.textContent = ideaData.frustrations || defaultIdeaData.frustrations;
+                            break;
+                        case "Who's Impacted":
+                            content.textContent = ideaData.impacted || defaultIdeaData.impacted;
+                            break;
+                        case "Assumptions Not Questioned":
+                            content.textContent = ideaData.assumptions || defaultIdeaData.assumptions;
+                            break;
+                        case "Tech/Trend Applied":
+                            content.textContent = ideaData.technology || defaultIdeaData.technology;
+                            break;
+                        case "Solution Type":
+                            content.text

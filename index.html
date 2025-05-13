@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muse - A tool for turning sharp thoughts into bold ideas</title>
+    <style>
+        /* Reset CSS */
+        *, 
+        *::before, 
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        img, picture, video, canvas, svg {
+            display: block;
+            max-width: 100%;
+        }
+
+        input, button, textarea, select {
+            font: inherit;
+        }
+
+        p, h1, h2, h3, h4, h5, h6 {
+            overflow-wrap: break-word;
+        }
+
+        ol, ul {
+            list-style-position: inside;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        /* Modern Typography Settings */
+        h1, h2, h3, h4, h5, h6, .title, .subtitle {
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        body, p, button, input, textarea, select, .body-text {
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .title {
+            font-size: 4rem;
+            letter-spacing: -0.03em;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+
+        .intro-paragraph {
+            font-size: 1.5rem;
+            line-height: 1.4;
+            font-weight: 400;
+        }
+
+        .subtext {
+            font-size: 0.875rem;
+            opacity: 0.7;
+        }
+
+        button {
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0;
+        }
+
+        /* Main Styling */
+        :root {
+            --color-background: #FFFFFF;
+            --color-text: #000000;
+            --color-hover: #333333;
+            --color-border: #E0E0E0;
+            --color-light-gray: #F5F5F5;
+            --spacing-unit: 1rem;
+        }
+
+        body {
+            background-color: var(--color-background);
+            color: var(--color-text);
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: calc(var(--spacing-unit) * 6) var(--spacing-unit);
+        }
+
+        /* Header Styling */
+        header {
+            margin-bottom: calc(var(--spacing-unit) * 6);
+        }
+
+        .title {
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+            position: relative;
+        }
+
+        .title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -0.5rem;
+            width: 4rem;
+            height: 3px;
+            background-color: var(--color-text);
+        }
+
+        .subtitle {
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            opacity: 0.7;
+        }
+
+        /* Introduction Section */
+        .intro {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .intro-paragraph {
+            margin-bottom: calc(var(--spacing-unit) * 4);
+            max-width: 700px;
+        }
+
+        .steps {
+            margin-bottom: calc(var(--spacing-unit) * 4);
+            padding: calc(var(--spacing-unit) * 2);
+            border-left: 2px solid #000;
+            background-color: var(--color-light-gray);
+        }
+
+        .steps p {
+            font-weight: 600;
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+        }
+
+        .steps ol {
+            margin-left: calc(var(--spacing-unit) * 2);
+            counter-reset: step-counter;
+            list-style: none;
+        }
+
+        .steps li {
+            margin-bottom: calc(var(--spacing-unit) * 1.25);
+            position: relative;
+            padding-left: calc(var(--spacing-unit) * 2);
+        }
+
+        .steps li::before {
+            content: counter(step-counter);
+            counter-increment: step-counter;
+            position: absolute;
+            left: -10px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            background-color: #000;
+            color: #fff;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .intro-closing {
+            font-size: 1.5rem;
+            margin-bottom: calc(var(--spacing-unit) * 4);
+            font-weight: 500;
+            line-height: 1.4;
+            max-width: 700px;
+        }
+
+        /* CTA Button */
+        .cta-container {
+            margin-bottom: calc(var(--spacing-unit) * 2.5);
+        }
+
+        .primary-button {
+            background-color: var(--color-text);
+            color: var(--color-background);
+            padding: calc(var(--spacing-unit) * 1) calc(var(--spacing-unit) * 2.5);
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .primary-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .primary-button:hover {
+            background-color: var(--color-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .primary-button:hover::after {
+            transform: translateX(0);
+        }
+
+        .subtext {
+            align-self: flex-start;
+            padding: calc(var(--spacing-unit) * 1.5);
+            border-top: 1px solid var(--color-border);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: calc(var(--spacing-unit) * 4) var(--spacing-unit);
+            }
+            
+            .title {
+                font-size: 3rem;
+            }
+            
+            .intro-paragraph {
+                font-size: 1.25rem;
+            }
+
+            .intro-closing {
+                font-size: 1.25rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .intro-paragraph {
+                font-size: 1.125rem;
+            }
+
+            .intro-closing {
+                font-size: 1.125rem;
+            }
+
+            .steps {
+                padding: calc(var(--spacing-unit) * 1.5);
+            }
+        }
+
+        /* Navigation bar addition */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: calc(var(--spacing-unit) * 1.5) var(--spacing-unit);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--color-background);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+        }
+        
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: calc(var(--spacing-unit) * 2);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-text);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+    <!-- Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-logo">Muse</a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header>
+            <h1 class="title">Muse</h1>
+            <p class="subtitle">A tool for turning sharp thoughts into bold ideas.</p>
+        </header>
+
+        <section class="intro">
+            <p class="intro-paragraph">
+                This isn't a personality quiz or a startup simulator. It's a space to think. To explore what's changing in the world — and what you might want to change about it.
+            </p>
+
+            <div class="steps">
+                <p>You'll move through five steps:</p>
+                <ol>
+                    <li>Observe what catches your attention</li>
+                    <li>Question what's underneath it</li>
+                    <li>Ideate with real tools and future trends</li>
+                    <li>Create in your own flexible workspace</li>
+                    <li>Summarize your idea in a format you can keep, share, or build on</li>
+                </ol>
+            </div>
+
+            <p class="intro-closing">
+                You don't need to have the answer — you just need to be curious.
+            </p>
+
+            <div class="cta-container">
+                <button id="start-button" class="primary-button" onclick="window.location.href='step1.html'">Start Building</button>
+            </div>
+
+            <p class="subtext">
+                Your progress is saved locally. You can always come back, change your mind, or take it one step at a time.
+            </p>
+        </section>
+
+        <script>
+            // Check if browser supports localStorage
+            function supportsLocalStorage() {
+                try {
+                    return 'localStorage' in window && window['localStorage'] !== null;
+                } catch (e) {
+                    return false;
+                }
+            }
+            
+            // Initialize progress tracking
+            if (supportsLocalStorage()) {
+                // If user has already started, we could update the button text
+                if (localStorage.getItem('museProgress')) {
+                    const progress = JSON.parse(localStorage.getItem('museProgress'));
+                    if (progress.currentStep) {
+                        document.getElementById('start-button').textContent = 'Continue Building';
+                        document.getElementById('start-button').onclick = function() {
+                            window.location.href = `step${progress.currentStep}.html`;
+                        };
+                    }
+                } else {
+                    // Initialize progress object
+                    localStorage.setItem('museProgress', JSON.stringify({
+                        currentStep: 0,
+                        observations: [],
+                        questions: [],
+                        ideas: [],
+                        workspace: {},
+                        summary: ""
+                    }));
+                }
+            }
+        </script>
+    </main>
+</body>
+</html>

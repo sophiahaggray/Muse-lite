@@ -1,0 +1,1155 @@
+}
+</style>
+<!-- Google Fonts for modern typography -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<main class="container">
+    <header>
+        <h1 class="title">Muse</h1>
+        <p class="subtitle">Step 4: Workspace</p>
+    </header>
+
+    <section class="step-content">
+        <div class="step-introduction">
+            <h2 class="step-question">This is your space.</h2>
+            <p class="context">Sketch. Write. Collect. Rant. Play. The goal here isn't to perfect the idea — just to make it more <em>real</em>.</p>
+            <div id="selected-info" class="selected-info">
+                <div>Your Idea: A <strong id="solution-format">Tool</strong> using <strong id="selected-technology">Virtual Reality (VR)</strong> to improve <strong id="selected-industry">Technology: AI & Machine Learning</strong></div>
+            </div>
+        </div>
+
+        <div class="workspace-container">
+            <!-- Workspace Tabs Navigation -->
+            <div class="workspace-tabs">
+                <button class="tab-button active" data-tab="notepad">Notepad</button>
+                <button class="tab-button" data-tab="sketchpad">Sketch Pad</button>
+                <button class="tab-button" data-tab="moodboard">Moodboard</button>
+                <button class="tab-button" data-tab="articles">Paper Clippings</button>
+                
+                <!-- Save Indicator -->
+                <div class="save-indicator">
+                    All changes saved locally <span class="save-dot"></span>
+                </div>
+            </div>
+            
+            <!-- Workspace Tab Panels -->
+            <div class="workspace-panels">
+                <!-- Notepad Panel -->
+                <div id="notepad" class="panel active">
+                    <div class="panel-header">
+                        <h3 class="panel-title">Notepad</h3>
+                        <div id="thought-prompt" class="thought-prompt">What part of this idea excites you most?</div>
+                    </div>
+                    <div class="panel-content">
+                        <textarea id="notepad-content" placeholder="Start typing your thoughts here...">I'm most excited about making AI ethics tangible through VR experiences. Key points to explore:
+
+1. The ability to visually represent algorithmic bias and its real-world impacts
+2. Helping developers experience their code's consequences from different perspectives
+3. Creating emotional resonance with abstract ethical principles
+4. Building a library of ethical scenarios that can evolve with new challenges
+
+Questions to answer:
+- How can we translate complex algorithmic behaviors into understandable visual experiences?
+- What specific ethical scenarios should be included in the first version?
+- How do we create realistic simulations without oversimplifying complex social dynamics?
+
+Technical considerations:
+- VR headset requirements and accessibility concerns
+- Data visualization methods that work well in 3D environments
+- Allowing developers to import their own models for testing</textarea>
+                    </div>
+                </div>
+                
+                <!-- Sketch Pad Panel -->
+                <div id="sketchpad" class="panel">
+                    <div class="panel-header">
+                        <h3 class="panel-title">Sketch Pad</h3>
+                        <div class="sketch-controls">
+                            <button id="pencil-tool" class="sketch-button active" title="Pencil Tool">Pencil</button>
+                            <button id="eraser-tool" class="sketch-button" title="Eraser">Eraser</button>
+                            <button id="clear-canvas" class="sketch-button" title="Clear Canvas">Clear</button>
+                            <button id="download-sketch" class="sketch-button" title="Download Sketch">Download</button>
+                            <select id="template-select" class="template-select">
+                                <option value="none">No Template</option>
+                                <option value="grid">Grid</option>
+                                <option value="frame">Frame</option>
+                                <option value="phone">Phone Screen</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="panel-content">
+                        <div class="canvas-container">
+                            <canvas id="sketch-canvas" width="900" height="400"></canvas>
+                            <div id="template-overlay" class="template-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Moodboard Panel -->
+                <div id="moodboard" class="panel">
+                    <div class="panel-header">
+                        <h3 class="panel-title">Moodboard</h3>
+                        <div class="moodboard-prompt">Upload textures, colors, objects, or aesthetics that feel right for your idea.</div>
+                        <div class="moodboard-controls">
+                            <button id="add-inspiration" class="moodboard-button">Add Inspiration</button>
+                            <input type="file" id="image-upload" class="hidden" accept="image/*" multiple>
+                            <button id="random-inspiration" class="moodboard-button">Random Inspiration</button>
+                        </div>
+                    </div>
+                    <div class="panel-content">
+                        <div id="moodboard-container" class="moodboard-container">
+                            <!-- Sample moodboard images -->
+                            <div class="image-container">
+                                <img src="/api/placeholder/150/150" alt="Inspiration image" class="moodboard-image">
+                                <div class="remove-image">×</div>
+                            </div>
+                            <div class="image-container">
+                                <img src="/api/placeholder/150/150" alt="Inspiration image" class="moodboard-image">
+                                <div class="remove-image">×</div>
+                            </div>
+                            <div class="image-container">
+                                <img src="/api/placeholder/150/150" alt="Inspiration image" class="moodboard-image">
+                                <div class="remove-image">×</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Paper Clippings (Saved Articles) Panel -->
+                <div id="articles" class="panel">
+                    <div class="panel-header">
+                        <h3 class="panel-title">Paper Clippings</h3>
+                        <div class="articles-prompt">Articles you saved from the trend section in Step 1.</div>
+                    </div>
+                    <div class="panel-content">
+                        <div id="articles-container" class="articles-container">
+                            <!-- Sample article card -->
+                            <div class="article-card">
+                                <h4 class="article-title">The Ethics of AI Decision-Making</h4>
+                                <div class="article-meta">
+                                    <span class="article-source">Stanford HAI</span>
+                                    <span class="article-date">2023-07-22</span>
+                                </div>
+                                <p class="article-summary">As AI systems make more critical decisions, researchers and policymakers debate ethical frameworks for responsible implementation.</p>
+                                <div class="article-actions">
+                                    <a href="#" class="article-button" target="_blank">Read Article</a>
+                                    <button class="article-button remove-article" data-index="0">Remove</button>
+                                </div>
+                                <div class="article-note">
+                                    <label for="article-note-0">What did this spark for you?</label>
+                                    <textarea id="article-note-0" data-index="0" placeholder="Add your thoughts here...">This article made me think about how abstract ethical frameworks are in AI. We need tools that help emotionally connect with these abstract principles - VR could be perfect for this.</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <p class="footer-encouragement">You don't have to finish anything here. Just start putting it into form.</p>
+    </section>
+    
+    <footer>
+        <div class="step-navigation">
+            <a href="step3.html" class="nav-link">← Back to Ideation</a>
+            <div class="step-indicator">Step 4 of 5</div>
+            <a href="step5.html" class="nav-link">Next: Summary →</a>
+        </div>
+    </footer>
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Load data from previous steps
+        loadPreviousData();
+        
+        // Tab switching functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const panels = document.querySelectorAll('.panel');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all tabs and panels
+                tabButtons.forEach(tab => tab.classList.remove('active'));
+                panels.forEach(panel => panel.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding panel
+                this.classList.add('active');
+                const panelId = this.getAttribute('data-tab');
+                document.getElementById(panelId).classList.add('active');
+                
+                // Handle sketch pad canvas resize if needed
+                if (panelId === 'sketchpad') {
+                    initSketchpad();
+                }
+                
+                // Save the active tab to localStorage
+                localStorage.setItem('activeWorkspaceTab', panelId);
+            });
+        });
+        
+        // Basic auto-save functionality simulation
+        const saveIndicator = document.querySelector('.save-dot');
+        const notepadContent = document.getElementById('notepad-content');
+        
+        if (notepadContent) {
+            // Load saved notepad content if exists
+            const savedNotepadContent = localStorage.getItem('notepadContent');
+            if (savedNotepadContent) {
+                notepadContent.value = savedNotepadContent;
+            }
+            
+            // Save notepad content on input
+            notepadContent.addEventListener('input', function() {
+                // Show saving state
+                saveIndicator.classList.add('saving');
+                
+                // Save the content to localStorage
+                localStorage.setItem('notepadContent', this.value);
+                
+                // Simulate saving after a short delay
+                setTimeout(function() {
+                    saveIndicator.classList.remove('saving');
+                }, 1000);
+            });
+        }
+
+        // Moodboard functionality
+        document.getElementById('add-inspiration').addEventListener('click', function() {
+            document.getElementById('image-upload').click();
+        });
+        
+        // Random inspiration button
+        document.getElementById('random-inspiration').addEventListener('click', function() {
+            alert("In a full implementation, this would generate random inspiration images related to your idea.");
+        });
+        
+        // Remove image buttons
+        const removeImageButtons = document.querySelectorAll('.remove-image');
+        removeImageButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const imageContainer = this.parentElement;
+                imageContainer.remove();
+            });
+        });
+        
+        // Article note saving
+        const articleNotes = document.querySelectorAll('.article-note textarea');
+        articleNotes.forEach(note => {
+            // Load saved note if exists
+            const noteId = note.id;
+            const savedNote = localStorage.getItem(noteId);
+            if (savedNote) {
+                note.value = savedNote;
+            }
+            
+            // Save note on input
+            note.addEventListener('input', function() {
+                saveIndicator.classList.add('saving');
+                localStorage.setItem(this.id, this.value);
+                
+                setTimeout(function() {
+                    saveIndicator.classList.remove('saving');
+                }, 1000);
+            });
+        });
+        
+        // Remove article buttons
+        const removeArticleButtons = document.querySelectorAll('.remove-article');
+        removeArticleButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const articleCard = this.closest('.article-card');
+                articleCard.remove();
+            });
+        });
+
+        // Function to load data from previous steps
+        function loadPreviousData() {
+            // Get data from localStorage
+            const selectedIndustry = localStorage.getItem('selectedIndustry');
+            const selectedTechnology = localStorage.getItem('selectedTechnology');
+            const solutionFormat = localStorage.getItem('solutionFormat');
+            
+            // Update the info display
+            if (selectedIndustry) {
+                document.getElementById('selected-industry').textContent = selectedIndustry;
+            }
+            
+            if (selectedTechnology) {
+                document.getElementById('selected-technology').textContent = selectedTechnology;
+            }
+            
+            if (solutionFormat) {
+                document.getElementById('solution-format').textContent = solutionFormat;
+            }
+            
+            // Restore active tab if saved
+            const savedTab = localStorage.getItem('activeWorkspaceTab');
+            if (savedTab) {
+                const tabButton = document.querySelector(`.tab-button[data-tab="${savedTab}"]`);
+                if (tabButton) {
+                    tabButton.click();
+                }
+            }
+        }
+
+        // Basic sketch pad functionality
+        function initSketchpad() {
+            const canvas = document.getElementById('sketch-canvas');
+            const ctx = canvas.getContext('2d');
+            const templateOverlay = document.getElementById('template-overlay');
+            const templateSelect = document.getElementById('template-select');
+            const pencilButton = document.getElementById('pencil-tool');
+            const eraserButton = document.getElementById('eraser-tool');
+            const clearButton = document.getElementById('clear-canvas');
+            const downloadButton = document.getElementById('download-sketch');
+            
+            // Resize canvas to fit container
+            const resizeCanvas = function() {
+                const container = canvas.parentElement;
+                canvas.width = container.clientWidth;
+                canvas.height = container.clientHeight;
+                
+                // Redraw saved canvas if exists
+                const savedCanvas = localStorage.getItem('sketchpadCanvas');
+                if (savedCanvas) {
+                    const img = new Image();
+                    img.onload = function() {
+                        ctx.drawImage(img, 0, 0);
+                    };
+                    img.src = savedCanvas;
+                }
+            };
+            
+            // Initialize canvas
+            resizeCanvas();
+            
+            // Set drawing properties
+            ctx.lineWidth = 2;
+            ctx.lineJoin = 'round';
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = '#000000';
+            
+            // Drawing state
+            let isDrawing = false;
+            let lastX = 0;
+            let lastY = 0;
+            let currentTool = 'pencil';
+            
+            // Drawing functions
+            function startDrawing(e) {
+                isDrawing = true;
+                [lastX, lastY] = [e.offsetX, e.offsetY];
+            }
+            
+            function draw(e) {
+                if (!isDrawing) return;
+                
+                ctx.beginPath();
+                ctx.moveTo(lastX, lastY);
+                ctx.lineTo(e.offsetX, e.offsetY);
+                
+                if (currentTool === 'eraser') {
+                    ctx.globalCompositeOperation = 'destination-out';
+                    ctx.lineWidth = 20;
+                } else {
+                    ctx.globalCompositeOperation = 'source-over';
+                    ctx.lineWidth = 2;
+                }
+                
+                ctx.stroke();
+                [lastX, lastY] = [e.offsetX, e.offsetY];
+                
+                // Save canvas state
+                saveCanvasState();
+            }
+            
+            function stopDrawing() {
+                isDrawing = false;
+            }
+            
+            // Setup event listeners for drawing
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('mouseup', stopDrawing);
+            canvas.addEventListener('mouseout', stopDrawing);
+            
+            // Tool selection
+            pencilButton.addEventListener('click', function() {
+                currentTool = 'pencil';
+                pencilButton.classList.add('active');
+                eraserButton.classList.remove('active');
+            });
+            
+            eraserButton.addEventListener('click', function() {
+                currentTool = 'eraser';
+                eraserButton.classList.add('active');
+                pencilButton.classList.remove('active');
+            });
+            
+            // Clear canvas
+            clearButton.addEventListener('click', function() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                saveCanvasState();
+            });
+            
+            // Template selection
+            templateSelect.addEventListener('change', function() {
+                const templateValue = this.value;
+                
+                switch(templateValue) {
+                    case 'grid':
+                        templateOverlay.style.backgroundImage = "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgTCAwIDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiNlMGUwZTAiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSI+PC9yZWN0Pjwvc3ZnPg==')";
+                        break;
+                    case 'frame':
+                        templateOverlay.style.backgroundImage = "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSI3MDAiIGhlaWdodD0iNTAwIiBmaWxsPSJub25lIiBzdHJva2U9IiM5OTkiIHN0cm9rZS13aWR0aD0iMiI+PC9yZWN0Pjwvc3ZnPg==')";
+                        break;
+                    case 'phone':
+                        templateOverlay.style.backgroundImage = "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIyMDAiIGhlaWdodD0iNDAwIiByeD0iMjAiIHJ5PSIyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTk5IiBzdHJva2Utd2lkdGg9IjIiPjwvcmVjdD48Y2lyY2xlIGN4PSIxNTAiIGN5PSI0ODUiIHI9IjIwIiBmaWxsPSJub25lIiBzdHJva2U9IiM5OTkiIHN0cm9rZS13aWR0aD0iMiI+PC9jaXJjbGU+PHJlY3QgeD0iMTEwIiB5PSI2NSIgd2lkdGg9IjgwIiBoZWlnaHQ9IjEwIiByeD0iNSIgcnk9IjUiIGZpbGw9IiM5OTkiPjwvcmVjdD48L3N2Zz4=')";
+                        break;
+                    default:
+                        templateOverlay.style.backgroundImage = 'none';
+                }
+                
+                // Save template choice
+                localStorage.setItem('sketchpadTemplate', templateValue);
+            });
+            
+            // Restore saved template if exists
+            const savedTemplate = localStorage.getItem('sketchpadTemplate');
+            if (savedTemplate) {
+                templateSelect.value = savedTemplate;
+                // Trigger change event to apply the template
+                const event = new Event('change');
+                templateSelect.dispatchEvent(event);
+            }
+            
+            // Download canvas
+            downloadButton.addEventListener('click', function() {
+                const link = document.createElement('a');
+                link.download = 'sketch.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+            
+            // Save canvas state to localStorage
+            function saveCanvasState() {
+                saveIndicator.classList.add('saving');
+                
+                // Save as data URL
+                try {
+                    const dataURL = canvas.toDataURL();
+                    localStorage.setItem('sketchpadCanvas', dataURL);
+                } catch (e) {
+                    console.log("Couldn't save canvas due to storage limitations");
+                }
+                
+                setTimeout(function() {
+                    saveIndicator.classList.remove('saving');
+                }, 1000);
+            }
+            
+            // Handle window resize
+            window.addEventListener('resize', resizeCanvas);
+            
+            console.log('Sketchpad initialized');
+        }
+        
+        // Initialize sketchpad if it's the active tab
+        if (document.querySelector('.tab-button[data-tab="sketchpad"]').classList.contains('active')) {
+            initSketchpad();
+        }
+    });
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Step 4: Workspace | Muse</title>
+<style>
+    /* Reset CSS */
+    *, 
+    *::before, 
+    *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    img, picture, video, canvas, svg {
+        display: block;
+        max-width: 100%;
+    }
+
+    input, button, textarea, select {
+        font: inherit;
+    }
+
+    p, h1, h2, h3, h4, h5, h6 {
+        overflow-wrap: break-word;
+    }
+
+    ol, ul {
+        list-style-position: inside;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    button {
+        border: none;
+        background: none;
+        cursor: pointer;
+    }
+
+    /* Modern Typography Settings */
+    h1, h2, h3, h4, h5, h6, .title, .subtitle {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+    }
+
+    body, p, button, input, textarea, select, .body-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-weight: 400;
+        line-height: 1.6;
+    }
+
+    .title {
+        font-size: 3.5rem;
+        letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+        font-size: 1.25rem;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+    }
+
+    /* Main Styling */
+    :root {
+        --color-background: #FFFFFF;
+        --color-text: #000000;
+        --color-hover: #333333;
+        --color-border: #E0E0E0;
+        --color-light-gray: #F5F5F5;
+        --color-medium-gray: #EEEEEE;
+        --color-saved: #32D74B;
+        --color-saving: #FF9F0A;
+        --spacing-unit: 1rem;
+        --border-radius: 8px;
+    }
+
+    body {
+        background-color: var(--color-light-gray);
+        padding: calc(var(--spacing-unit) * 2);
+        margin-bottom: calc(var(--spacing-unit) * 3);
+        font-size: 1rem;
+        line-height: 1.6;
+        border-radius: var(--border-radius);
+        border-left: 3px solid #000;
+    }
+
+    /* Workspace Container */
+    .workspace-container {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid var(--color-border);
+        margin-bottom: calc(var(--spacing-unit) * 3);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Workspace Tabs */
+    .workspace-tabs {
+        display: flex;
+        border-bottom: 1px solid var(--color-border);
+        background-color: var(--color-light-gray);
+        position: relative;
+    }
+
+    .tab-button {
+        padding: calc(var(--spacing-unit) * 0.9) calc(var(--spacing-unit) * 1.75);
+        cursor: pointer;
+        background: none;
+        border: none;
+        border-right: 1px solid var(--color-border);
+        transition: all 0.2s ease;
+        font-weight: 600;
+        font-size: 0.9rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .tab-button:hover {
+        background-color: rgba(0, 0, 0, 0.03);
+    }
+
+    .tab-button.active {
+        background-color: var(--color-background);
+        color: var(--color-text);
+    }
+
+    .tab-button.active::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #000;
+    }
+
+    /* Save Indicator */
+    .save-indicator {
+        position: absolute;
+        right: var(--spacing-unit);
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 0.8rem;
+        opacity: 0.7;
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+    }
+
+    .save-dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: var(--color-saved);
+        margin-left: 8px;
+        transition: background-color 0.3s ease;
+    }
+
+    .save-dot.saving {
+        background-color: var(--color-saving);
+    }
+
+    /* Workspace Panels */
+    .workspace-panels {
+        position: relative;
+        height: 500px;
+    }
+
+    .panel {
+        display: none;
+        height: 100%;
+        flex-direction: column;
+    }
+
+    .panel.active {
+        display: flex;
+    }
+
+    .panel-header {
+        padding: calc(var(--spacing-unit) * 1.5);
+        border-bottom: 1px solid var(--color-border);
+        background-color: var(--color-background);
+    }
+
+    .panel-title {
+        font-size: 1.25rem;
+        margin-bottom: calc(var(--spacing-unit) * 0.75);
+        position: relative;
+        display: inline-block;
+    }
+
+    .panel-title::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 2rem;
+        height: 2px;
+        background-color: var(--color-text);
+    }
+
+    .panel-content {
+        flex: 1;
+        overflow: auto;
+        padding: 0;
+    }
+
+    /* Notepad Panel */
+    .thought-prompt {
+        font-style: italic;
+        margin-top: calc(var(--spacing-unit) * 0.75);
+        opacity: 0.7;
+        font-size: 0.95rem;
+    }
+
+    #notepad-content {
+        width: 100%;
+        height: 100%;
+        padding: calc(var(--spacing-unit) * 2);
+        border: none;
+        resize: none;
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    #notepad-content:focus {
+        outline: none;
+    }
+
+    /* Sketch Pad Panel */
+    .sketch-controls {
+        display: flex;
+        gap: calc(var(--spacing-unit) * 0.75);
+        margin-top: calc(var(--spacing-unit) * 1);
+        flex-wrap: wrap;
+    }
+
+    .sketch-button {
+        padding: calc(var(--spacing-unit) * 0.5) calc(var(--spacing-unit) * 1);
+        border: 1px solid var(--color-border);
+        background-color: var(--color-background);
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
+        border-radius: 4px;
+    }
+
+    .sketch-button:hover {
+        background-color: var(--color-light-gray);
+        transform: translateY(-1px);
+    }
+
+    .sketch-button.active {
+        background-color: #000;
+        color: #fff;
+        border-color: #000;
+    }
+
+    .template-select {
+        padding: calc(var(--spacing-unit) * 0.5) calc(var(--spacing-unit) * 1);
+        border: 1px solid var(--color-border);
+        font-size: 0.9rem;
+        background-color: var(--color-background);
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    .canvas-container {
+        position: relative;
+        height: 100%;
+        background-color: #fff;
+        border-top: 1px solid var(--color-border);
+    }
+
+    .template-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        opacity: 0.15;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+
+    /* Moodboard Panel */
+    .moodboard-prompt {
+        font-style: italic;
+        margin-top: calc(var(--spacing-unit) * 0.75);
+        opacity: 0.7;
+        margin-bottom: calc(var(--spacing-unit) * 1);
+        font-size: 0.95rem;
+    }
+
+    .moodboard-controls {
+        display: flex;
+        gap: calc(var(--spacing-unit) * 0.75);
+    }
+
+    .moodboard-button {
+        padding: calc(var(--spacing-unit) * 0.5) calc(var(--spacing-unit) * 1);
+        border: 1px solid var(--color-border);
+        background-color: var(--color-background);
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
+        border-radius: 4px;
+    }
+
+    .moodboard-button:hover {
+        background-color: var(--color-light-gray);
+        transform: translateY(-1px);
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .moodboard-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: var(--spacing-unit);
+        padding: calc(var(--spacing-unit) * 2);
+        min-height: 300px;
+    }
+
+    .upload-placeholder {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 200px;
+        border: 2px dashed var(--color-border);
+        background-color: rgba(0, 0, 0, 0.02);
+        padding: calc(var(--spacing-unit) * 2);
+        text-align: center;
+        border-radius: var(--border-radius);
+    }
+
+    .moodboard-image {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border: 1px solid var(--color-border);
+        transition: all 0.2s ease;
+        position: relative;
+        border-radius: 4px;
+    }
+
+    .moodboard-image:hover {
+        transform: scale(1.05);
+        z-index: 2;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-container {
+        position: relative;
+    }
+
+    .remove-image {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 24px;
+        height: 24px;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 16px;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .image-container:hover .remove-image {
+        opacity: 1;
+    }
+
+    /* Paper Clippings Panel */
+    .articles-prompt {
+        margin-top: calc(var(--spacing-unit) * 0.75);
+        opacity: 0.7;
+        margin-bottom: calc(var(--spacing-unit) * 1);
+        font-size: 0.95rem;
+        font-style: italic;
+    }
+
+    .articles-container {
+        padding: calc(var(--spacing-unit) * 2);
+        display: flex;
+        flex-direction: column;
+        gap: calc(var(--spacing-unit) * 2);
+    }
+
+    .no-articles-message {
+        padding: calc(var(--spacing-unit) * 3);
+        text-align: center;
+        border: 2px dashed var(--color-border);
+        background-color: rgba(0, 0, 0, 0.02);
+        border-radius: var(--border-radius);
+    }
+
+    .article-card {
+        border: 1px solid var(--color-border);
+        padding: calc(var(--spacing-unit) * 2);
+        background-color: #fff;
+        position: relative;
+        transition: all 0.25s ease;
+        border-radius: var(--border-radius);
+    }
+
+    .article-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    .article-title {
+        font-size: 1.1rem;
+        margin-bottom: calc(var(--spacing-unit) * 0.75);
+        font-weight: 600;
+    }
+
+    .article-meta {
+        display: flex;
+        font-size: 0.875rem;
+        color: rgba(0, 0, 0, 0.6);
+        margin-bottom: var(--spacing-unit);
+    }
+
+    .article-meta span {
+        margin-right: var(--spacing-unit);
+    }
+
+    .article-summary {
+        margin-bottom: var(--spacing-unit);
+        font-size: 0.95rem;
+    }
+
+    .article-actions {
+        display: flex;
+        gap: calc(var(--spacing-unit) * 0.75);
+        margin-top: calc(var(--spacing-unit) * 1.25);
+    }
+
+    .article-button {
+        padding: calc(var(--spacing-unit) * 0.5) calc(var(--spacing-unit) * 1);
+        border: 1px solid var(--color-border);
+        background-color: var(--color-background);
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
+        border-radius: 4px;
+    }
+
+    .article-button:hover {
+        background-color: var(--color-light-gray);
+        transform: translateY(-1px);
+    }
+
+    .article-note {
+        margin-top: calc(var(--spacing-unit) * 1.5);
+        padding-top: calc(var(--spacing-unit) * 1.25);
+        border-top: 1px dashed var(--color-border);
+    }
+
+    .article-note textarea {
+        width: 100%;
+        padding: calc(var(--spacing-unit) * 1);
+        border: 1px solid var(--color-border);
+        font-size: 0.95rem;
+        min-height: 90px;
+        resize: vertical;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+    }
+
+    .article-note textarea:focus {
+        outline: none;
+        border-color: rgba(0, 0, 0, 0.5);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .article-note label {
+        display: block;
+        margin-bottom: calc(var(--spacing-unit) * 0.5);
+        font-size: 0.9rem;
+        font-style: italic;
+        opacity: 0.8;
+    }
+
+    /* Footer Encouragement */
+    .footer-encouragement {
+        font-style: italic;
+        text-align: center;
+        opacity: 0.7;
+        margin-top: calc(var(--spacing-unit) * 3);
+        margin-bottom: calc(var(--spacing-unit) * 3);
+        padding: calc(var(--spacing-unit) * 1.5);
+        font-size: 1.05rem;
+        border-top: 1px solid var(--color-border);
+    }
+
+    /* Step Navigation */
+    .step-navigation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: calc(var(--spacing-unit) * 5);
+        border-top: 1px solid var(--color-border);
+        padding-top: calc(var(--spacing-unit) * 3);
+    }
+
+    .nav-link {
+        position: relative;
+        transition: all 0.2s ease;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 100%;
+        height: 1px;
+        background-color: currentColor;
+        transform-origin: right;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+        transform-origin: left;
+        transform: scaleX(1);
+    }
+
+    .step-indicator {
+        font-size: 0.875rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        opacity: 0.6;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .container {
+            padding: calc(var(--spacing-unit) * 3) var(--spacing-unit);
+        }
+        
+        .title {
+            font-size: 2.75rem;
+        }
+        
+        .step-question {
+            font-size: 1.75rem;
+        }
+        
+        .context {
+            font-size: 1rem;
+        }
+
+        .workspace-tabs {
+            overflow-x: auto;
+        }
+        
+        .tab-button {
+            padding: calc(var(--spacing-unit) * 0.75) calc(var(--spacing-unit) * 1.25);
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+        
+        .save-indicator {
+            display: none;
+        }
+        
+        .workspace-panels {
+            height: 400px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .title {
+            font-size: 2.25rem;
+        }
+        
+        .step-question {
+            font-size: 1.5rem;
+        }
+        
+        .moodboard-container {
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        }
+        
+        .article-actions {
+            flex-direction: column;
+        }
+        
+        .article-button {
+            width: 100%;
+            text-align: center;
+        }
+    } var(--color-background);
+        color: var(--color-text);
+        padding: 0;
+        margin: 0;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: calc(var(--spacing-unit) * 4) var(--spacing-unit);
+    }
+
+    /* Header Styling */
+    header {
+        margin-bottom: calc(var(--spacing-unit) * 5);
+    }
+
+    .title {
+        margin-bottom: var(--spacing-unit);
+        position: relative;
+    }
+
+    .title::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -0.5rem;
+        width: 3rem;
+        height: 2px;
+        background-color: var(--color-text);
+    }
+
+    .subtitle {
+        margin-bottom: calc(var(--spacing-unit) * 2);
+        opacity: 0.7;
+    }
+
+    /* Step 4 Specific Styling */
+    .step-content {
+        display: flex;
+        flex-direction: column;
+        gap: calc(var(--spacing-unit) * 3);
+    }
+
+    .step-introduction {
+        margin-bottom: calc(var(--spacing-unit) * 3);
+    }
+
+    .step-question {
+        font-size: 2.25rem;
+        margin-bottom: calc(var(--spacing-unit) * 2);
+        letter-spacing: -0.02em;
+        line-height: 1.3;
+    }
+
+    .context {
+        font-size: 1.125rem;
+        margin-bottom: calc(var(--spacing-unit) * 3);
+        max-width: 700px;
+        line-height: 1.5;
+    }
+
+    /* Selected Information Display */
+    .selected-info {
+        background-color:

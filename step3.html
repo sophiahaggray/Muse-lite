@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step 3: Solution Ideation | Muse</title>
+    <style>
+        /* Reset CSS */
+        *, 
+        *::before, 
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            color: #333;
+            background-color: #fff;
+        }
+
+        /* Modern Typography Settings */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 400;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            margin: 2rem 0;
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            height: 4px;
+            width: 100%;
+            background-color: #e0e0e0;
+            z-index: 1;
+        }
+
+        .progress-step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 40px;
+            height: 40px;
+        }
+
+        .step-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: white;
+            border: 3px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-weight: bold;
+            color: #666;
+        }
+
+        .progress-step.completed .step-icon {
+            background-color: #888;
+            border-color: #888;
+            color: white;
+        }
+
+        .progress-step.active .step-icon {
+            border-color: #333;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .step-label {
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            color: #666;
+        }
+
+        .progress-step.active .step-label {
+            color: #333;
+            font-weight: bold;
+        }
+
+        .progress-step.completed .step-label {
+            color: #888;
+        }
+
+        /* Previous data summary */
+        .problem-summary {
+            background-color: #f9f9f9;
+            border-left: 4px solid #888;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 4px;
+        }
+
+        .problem-summary h3 {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .problem-summary p {
+            margin-bottom: 0.5rem;
+        }
+
+        .problem-summary strong {
+            font-weight: 600;
+        }
+
+        /* Main Form */
+        .form-section {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-section:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title .number {
+            background-color: #888;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 1rem;
+        }
+
+        .section-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Technology Selection Grid */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .tech-category {
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .tech-category:hover {
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            border-color: #888;
+        }
+
+        .category-name {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .tech-options {
+            list-style-type: none;
+        }
+
+        .tech-option {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .tech-option input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 1.5px solid #666;
+            border-radius: 50%;
+            margin-right: 8px;
+            position: relative;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .tech-option input[type="checkbox"]:checked {
+            border-color: #888;
+        }
+
+        .tech-option input[type="checkbox"]:checked::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background-color: #888;
+            border-radius: 50%;
+        }
+
+        .tech-option label {
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        /* Solution Format */
+        .solution-formats {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .format-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 1.25rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .format-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .format-card.selected {
+            border-color: #888;
+            background-color: #f5f5f5;
+        }
+
+        .format-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .format-description {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Form Fields */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: inherit;
+            min-height: 100px;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #888;
+            box-shadow: 0 0 0 2px rgba(136, 136, 136, 0.2);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #888;
+            box-shadow: 0 0 0 2px rgba(136, 136, 136, 0.2);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Solution Summary */
+        .solution-summary {
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid #888;
+        }
+
+        .summary-title {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .summary-content {
+            line-height: 1.6;
+        }
+
+        .summary-content span {
+            font-weight: 600;
+            color: #555;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: #555;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #333;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: #333;
+            border: 1px solid #ccc;
+        }
+
+        .btn-secondary:hover {
+            background-color: #f5f5f5;
+            border-color: #999;
+        }
+
+        /* Navigation */
+        .step-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .nav-link {
+            color: #555;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+
+        .helper-text {
+            font-style: italic;
+            color: #666;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .tech-grid, .solution-formats {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Muse</h1>
+            <p class="subtitle">Step 3: Solution Ideation</p>
+        </header>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-step completed">
+                    <div class="step-icon">1</div>
+                    <div class="step-label">Observe</div>
+                </div>
+                <div class="progress-step completed">
+                    <div class="step-icon">2</div>
+                    <div class="step-label">Question</div>
+                </div>
+                <div class="progress-step active">
+                    <div class="step-icon">3</div>
+                    <div class="step-label">Ideate</div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-icon">4</div>
+                    <div class="step-label">Create</div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-icon">5</div>
+                    <div class="step-label">Summarize</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="problem-summary">
+            <h3>Your Problem Context</h3>
+            <p><strong>Problem Statement:</strong> <span id="problem-text">Loading...</span></p>
+            <p><strong>Industry:</strong> <span id="industry-text">Loading...</span></p>
+            <p><strong>Key Questions:</strong> <span id="questions-text">Loading...</span></p>
+        </div>
+        
+        <h2>How might we use technology to address this challenge?</h2>
+        <p>Let's explore potential technological solutions. Select technologies and combine them to create an innovative approach.</p>
+        
+        <form id="ideation-form">
+            <div class="form-section">
+                <h3 class="section-title"><span class="number">1</span> Technology Selection</h3>
+                <p class="section-description">Select one or more technologies that could address your problem. Consider how they might work together.</p>
+                
+                <div class="tech-grid">
+                    <!-- AI & Machine Learning Category -->
+                    <div class="tech-category">
+                        <h4 class="category-name">AI & Machine Learning</h4>
+                        <ul class="tech-options">
+                            <li class="tech-option">
+                                <input type="checkbox" id="tech-nlp" name="technologies" value="Natural Language Processing">
+                                <label for="tech-nlp">Natural Language Processing</label>
+                            </li>
+                            <li class="tech-option">
+                                <input type="checkbox" id="tech-cv" name="technologies" value="Computer Vision">
+                                <label for="tech-cv">Computer Vision</label>
+                            </li>
+                            <li class="tech-option">
+                                <input type="checkbox" id="tech-ml" name="technologies" value="Predictive Analytics">
+                                <label for="tech-ml">Predictive Analytics</label>
+                            </li>
+                            <li class="tech-option">
+                                <input type="checkbox" id="tech-gen-ai" name="technologies" value="Generative AI">
+                                <label for="tech-gen-ai">Generative AI</label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Mobile Technologies Category -->
+                    <div class="tech-category">
+                        <h4 class="category-name">Mobile Technologies</h4>
+                        <ul class="tech-options">
+                            <li class="tech-option">
+                                <input type="checkbox" id="tech-mobile-app" name="technologies" value="Mobile App">
+                                <label for="tech-mobile-app">Mobile App</label>
+                            </li>
+                            <li class="tech-option">
+                                <input type="checkbox" id="tech-geolocation" name="technologies" value="Geolocation">
+                                <label for="tech-geolocation">Geolocation</label>
+                            </li>
+                            <li class="tech-option">
+                                <input type="checkbox" id="tech-push" name="technologies" value="Push Notifications">
+                                <label for="tech-push">Push Notifications</label>
+                            </li>
+                            <li class="tech-option">
+                                <input type="checkbox" id="tech-ar" name="technologies" value="Augmented Reality">
+                                <label for="tech-ar">Augmented Reality</label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Web Technologies Category -->
+                    <div class="tech-category">
+                        <h4 class="category-name">Web Technologies</h4>
+                        <ul class="tech-options">
+                            <li class="tech-option">
+                                <input type="checkbox" id="tech-webapp" name="technologies" value="Web Application">
+                                <label for="tech-webapp">Web Application</label>
+                            </li>
+                            <li class="tech-option">
+                                <input type="checkbox" id="tech-browser-ext" name="technologies" value="Browser Extension">
+                                <label for="tech-browser-ext">Browser Extension</label>
+                            </li>
+                            <li class="tech-option">
+                                <input type="checkbox" id="tech-responsive" name="technologies" value="Responsive Web Design">
+                                <label for="tech-responsive">Responsive Web Design</label>
+                            </li>
+                            <li class="tech-option">
+                                <input type="checkbox" id="tech-pwa" name="technologies" value="Progressive Web App">
+                                <label for="tech-pwa">Progressive Web App</label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- IoT & Hardware Category -->
+                    <div class="tech-category">
+                        <h4 class="category-name">IoT & Hardware</h4>
+                        <ul class="tech-options">
+                            <li class="tech-option">
+                                <input type="checkbox" id="tech-sensors" name="technologies" value="Sensors & Monitoring">
+                                <label for="tech-sensors">Sensors & Monitoring</label>
+                            </li>
+                            <li class="tech-option">
+                                <input type="checkbox" id="tech-wearables" name="technologies" value="Wearable Technology">
+                                <label for="tech-wearables">Wearable Technology</label>
+                            </li>
+                            <li class="tech-option">
+                                <input type="checkbox" id="tech-smart-home" name="technologies" value="Smart Home Devices">
+                                <label for="tech-smart-home">Smart Home Devices</label>
+                            </li>
+                            <li class="tech-option">
+                                <input type="checkbox" id="tech-robotics" name="technologies" value="Robotics">
+                                <label for="tech-robotics">Robotics</label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Data & Analytics Category -->
+                    <div class="tech-category">
+                        <h4 class="category-name">Data & Analytics</h4>
+                        <ul class="tech-options">
+                            <li class="tech-option">
+                                <input type="checkbox" id="tech-big-data" name="technologies" value="Big Data Processing">
+                                <label for="tech-big-data">Big Data Processing</label>
+                            </li>
+                            <li class="tech-option">
+                                <input type="checkbox" id="tech-visualization" name="technologies" value="Data Visualization">
+                                <label for="tech-visualization">Data Visualization</label>
+                            </li>
+                            <li class="tech-option">
+                                <input type="checkbox" id="tech-analytics" name="technologies" value="Analytics Dashboard">
+                                <label for="tech-analytics">Analytics Dashboard</label>
+                            </li>
+                            <li class="tech-option">
+                                <input type="checkbox" id="tech-realtime" name="technologies" value="Real-time Analytics">
+                                <label for="tech-realtime">Real-time Analytics</label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Other Technologies Category -->
+                    <div class="tech-category">
+                        <h4 class="category-name">Other Technologies</h4>
+                        <ul class="tech-options">
+                            <li class="tech-option">
+                                <input type="checkbox" id="tech-blockchain" name="technologies" value="Blockchain">
+                                <label for="tech-blockchain">Blockchain</label>
+                            </li>
+                            <li class="tech-option">
+                                <input type="checkbox" id="tech-vr" name="technologies" value="Virtual Reality">
+                                <label for="tech-vr">Virtual Reality</label>
+                            </li>
+                            <li class="tech-option">
+                                <input type="checkbox" id="tech-chatbot" name="technologies" value="Chatbot">
+                                <label for="tech-chatbot">Chatbot</label>
+                            </li>
+                            <li class="tech-option">
+                                <input type="checkbox" id="tech-custom" name="technologies" value="custom">
+                                <label for="tech-custom">Custom Technology</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="custom-input-container hidden" id="custom-tech-container">
+                    <label for="custom-tech-input">Specify your custom technology:</label>
+                    <input type="text" id="custom-tech-input" name="custom-tech" placeholder="Enter custom technology name">
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h3 class="section-title"><span class="number">2</span> Solution Format</h3>
+                <p class="section-description">What format will your solution take? Select the most appropriate approach.</p>
+                
+                <div class="solution-formats">
+                    <div class="format-card" data-format="mobile-app">
+                        <h4 class="format-title">Mobile Application</h4>
+                        <p class="format-description">An app for smartphones and tablets with focused functionality.</p>
+                    </div>
+                    <div class="format-card" data-format="web-platform">
+                        <h4 class="format-title">Web Platform</h4>
+                        <p class="format-description">A browser-based solution accessible across devices.</p>
+                    </div>
+                    <div class="format-card" data-format="hardware-device">
+                        <h4 class="format-title">Hardware Device</h4>
+                        <p class="format-description">A physical product with electronic components.</p>
+                    </div>
+                    <div class="format-card" data-format="hybrid-solution">
+                        <h4 class="format-title">Hybrid Solution</h4>
+                        <p class="format-description">Combining software and hardware components.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h3 class="section-title"><span class="number">3</span> Solution Details</h3>
+                <p class="section-description">Describe your innovative solution using the technologies selected above.</p>
+                
+                <div class="form-group">
+                    <label for="solution-concept">Solution Description</label>
+                    <textarea id="solution-concept" name="solution-concept" placeholder="Describe your solution concept in detail..." rows="5"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tech-justification">Technology Justification</label>
+                    <textarea id="tech-justification" name="tech-justification" placeholder="Why did you select these technologies? How do they address the problem?" rows="3"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="impact-assessment">Impact Assessment</label>
+                    <textarea id="impact-assessment" name="impact-assessment" placeholder="How will your solution impact users and stakeholders?" rows="3"></textarea>
+                </div>
+            </div>
+            
+            <div class="solution-summary" id="idea-summary">
+                <h3 class="summary-title">Your Solution Summary</h3>
+                <p class="summary-content">
+                    A <span id="summary-format">format type</span> solution using <span id="summary-tech">selected technologies</span> that will <span id="summary-impact">address the problem</span>.
+                </p>
+            </div>
+            
+            <div class="action-buttons">
+                <button type="button" id="next-button" class="btn btn-primary">Save & Continue to Step 4</button>
+                <button type="button" id="save-button" class="btn btn-secondary">Save Progress</button>
+            </div>
+        </form>
+        
+        <div class="step-navigation">
+            <a href="step2.html" class="nav-link">← Back to Question</a>
+            <a href="step4.html" id="preview-next-step" class="nav-link">Next: Create →</a>
+        </div>
+        
+        <p class="helper-text">Innovative solutions often combine technologies in unexpected ways. Don't be afraid to explore unconventional approaches!</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded - Muse Step 3 script initialized');
+            
+            // Check if browser supports localStorage
+            function supportsLocalStorage() {
+                try {
+                    return 'localStorage' in window && window['localStorage'] !== null;
+                } catch (e) {
+                    return false;
+                }
+            }
+            
+            // Initialize or load progress
+            let museProgress = {
+                currentStep: 3,
+                industry: "",
+                industryReason: "",
+                questions: [],
+                technologies: [],
+                solutionFormat: "",
+                solutionConcept: "",
+                techJustification: "",
+                impactAssessment: ""
+            };
+            
+            // Load saved progress if it exists
+            if (supportsLocalStorage()) {
+                const savedProgress = localStorage.getItem('museProgress');
+                if (savedProgress) {
+                    try {
+                        const parsedProgress = JSON.parse(savedProgress);
+                        museProgress = { ...museProgress, ...parsedProgress };
+                        
+                        // Update UI with saved data from previous steps
+                        loadPreviousStepData();
+                        
+                        // Load step 3 data if previously saved
+                        loadStep3Data();
+                    } catch (e) {
+                        console.error('Error parsing saved progress:', e);
+                    }
+                } else {
+                    // Redirect to step 1 if new session (uncomment if preferred)
+                    // window.location.href = 'step1.html'; 
+                }
+            }
+            
+            // Load data from previous steps
+            function loadPreviousStepData() {
+                // Extract problem statement from question 2 (problem needs solving)
+                const problemQuestion = museProgress.questions.find(q => q.id === 'question-2');
+                document.getElementById('problem-text').textContent = problemQuestion ? problemQuestion.text : 'No problem defined';
+                
+                // Extract industry information
+                document.getElementById('industry-text').textContent = museProgress.industry || 'Not specified';
+                
+                // Extract key questions
+                const questionsText = museProgress.questions.map(q => q.text).filter(Boolean).join('; ');
+                document.getElementById('questions-text').textContent = questionsText || 'No questions defined';
+            }
+            
+            // Load step 3 data if previously saved
+            function loadStep3Data() {
+                // Load selected technologies
+                if (museProgress.technologies && museProgress.technologies.length > 0) {
+                    museProgress.technologies.forEach(tech => {
+                        const checkbox = document.querySelector(`input[value="${tech}"]`);
+                        if (checkbox) {
+                            checkbox.checked = true;
+                        } else if (tech !== 'custom') {
+                            // Handle custom technology
+                            document.getElementById('tech-custom').checked = true;
+                            document.getElementById('custom-tech-container').classList.remove('hidden');
+                            document.getElementById('custom-tech-input').value = tech;
+                        }
+                    });
+                }
+                
+                // Load solution format
+                if (museProgress.solutionFormat) {
+                    const formatCard = document.querySelector(`.format-card[data-format="${museProgress.solutionFormat}"]`);
+                    if (formatCard) {
+                        formatCard.classList.add('selected');
+                    }
+                }
+                
+                // Load text inputs
+                document.getElementById('solution-concept').value = museProgress.solutionConcept || '';
+                document.getElementById('tech-justification').value = museProgress.techJustification || '';
+                document.getElementById('impact-assessment').value = museProgress.impactAssessment || '';
+                
+                // Update summary
+                updateSolutionSummary();
+            }
+            
+            // Set up all event listeners
+            setupEventListeners();
+            
+            function setupEventListeners() {
+                // Technology selection
+                document.querySelectorAll('.tech-option input[type="checkbox"]').forEach(checkbox => {
+                    checkbox.addEventListener('change', function() {
+                        // Show/hide custom input if "Custom Technology" is checked
+                        if (this.id === 'tech-custom') {
+                            document.getElementById('custom-tech-container').classList.toggle('hidden', !this.checked);
+                        }
+                        updateSolutionSummary();
+                    });
+                });
+                
+                // Solution format selection
+                document.querySelectorAll('.format-card').forEach(card => {
+                    card.addEventListener('click', function() {
+                        // Deselect all format cards
+                        document.querySelectorAll('.format-card').forEach(c => {
+                            c.classList.remove('selected');
+                        });
+                        
+                        // Select the clicked card
+                        this.classList.add('selected');
+                        updateSolutionSummary();
+                    });
+                });
+                
+                // Text inputs
+                const textInputs = [
+                    document.getElementById('solution-concept'),
+                    document.getElementById('tech-justification'),
+                    document.getElementById('impact-assessment'),
+                    document.getElementById('custom-tech-input')
+                ];
+                
+                textInputs.forEach(input => {
+                    if (input) {
+                        input.addEventListener('input', function() {
+                            updateSolutionSummary();
+                        });
+                    }
+                });
+                
+                // Button actions
+                document.getElementById('save-button').addEventListener('click', function() {
+                    saveProgress();
+                    alert('Progress saved successfully!');
+                });
+                
+                document.getElementById('next-button').addEventListener('click', function() {
+                    saveProgress();
+                    window.location.href = 'step4.html';
+                });
+            }
+            
+            // Update solution summary based on selections
+            function updateSolutionSummary() {
+                // Get selected technologies
+                const selectedTechs = [];
+                document.querySelectorAll('.tech-option input[type="checkbox"]:checked').forEach(checkbox => {
+                    if (checkbox.value === 'custom') {
+                        const customTech = document.getElementById('custom-tech-input').value;
+                        if (customTech) {
+                            selectedTechs.push(customTech);
+                        }
+                    } else {
+                        selectedTechs.push(checkbox.value);
+                    }
+                });
+                
+                // Get selected format
+                const selectedFormatElement = document.querySelector('.format-card.selected');
+                const selectedFormat = selectedFormatElement ? 
+                    selectedFormatElement.querySelector('.format-title').textContent : 
+                    'format type';
+                
+                // Get impact from textarea
+                const impactText = document.getElementById('impact-assessment').value;
+                const impact = impactText ? 
+                    (impactText.length > 50 ? impactText.substring(0, 50) + '...' : impactText) : 
+                    'address the problem';
+                
+                // Update summary text
+                document.getElementById('summary-tech').textContent = selectedTechs.length > 0 ? 
+                    selectedTechs.join(', ') : 
+                    'selected technologies';
+                document.getElementById('summary-format').textContent = selectedFormat;
+                document.getElementById('summary-impact').textContent = impact;
+            }
+            
+            // Save progress to localStorage
+            function saveProgress() {
+                // Get selected technologies
+                const selectedTechs = [];
+                document.querySelectorAll('.tech-option input[type="checkbox"]:checked').forEach(checkbox => {
+                    if (checkbox.value === 'custom') {
+                        const customTech = document.getElementById('custom-tech-input').value;
+                        if (customTech) {
+                            selectedTechs.push(customTech);
+                        }
+                    } else {
+                        selectedTechs.push(checkbox.value);
+                    }
+                });
+                
+                // Get selected format
+                const selectedFormatElement = document.querySelector('.format-card.selected');
+                const selectedFormat = selectedFormatElement ? 
+                    selectedFormatElement.getAttribute('data-format') : 
+                    '';
+                
+                // Update progress object
+                museProgress.technologies = selectedTechs;
+                museProgress.solutionFormat = selectedFormat;
+                museProgress.solutionConcept = document.getElementById('solution-concept').value;
+                museProgress.techJustification = document.getElementById('tech-justification').value;
+                museProgress.impactAssessment = document.getElementById('impact-assessment').value;
+                
+                // Save to localStorage
+                if (supportsLocalStorage()) {
+                    localStorage.setItem('museProgress', JSON.stringify(museProgress));
+                }
+            }
+        });
+    </script>
